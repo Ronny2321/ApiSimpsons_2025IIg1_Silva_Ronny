@@ -11,7 +11,7 @@ const EpisodesPage = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState("");
-  const itemsPerPage = 8; 
+  const itemsPerPage = 8;
 
   useEffect(() => {
     const fetchAllEpisodes = async () => {
@@ -55,12 +55,10 @@ const EpisodesPage = () => {
       setFilteredEpisodes(episodes);
       setTotalPages(Math.ceil(episodes.length / itemsPerPage));
     } else {
-      const filtered = episodes.filter(
-        (ep) => ep.season === parseInt(season)
-      );
+      const filtered = episodes.filter((ep) => ep.season === parseInt(season));
       setFilteredEpisodes(filtered);
       setTotalPages(Math.ceil(filtered.length / itemsPerPage));
-      setCurrentPage(1); 
+      setCurrentPage(1);
     }
   };
 
