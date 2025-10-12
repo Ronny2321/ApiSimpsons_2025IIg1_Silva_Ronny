@@ -2,6 +2,46 @@
   background-color: lightgreen;
   width: 100%;
   padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.episodes-container h1 {
+  font-family: 'Luckiest Guy', cursive;
+  color: var(--simpson-blue);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filter-container label {
+  font-family: 'Righteous', sans-serif;
+  font-size: 1.2rem;
+  margin-right: 10px;
+  color: var(--simpson-blue);
+}
+
+.filter-container select {
+  padding: 10px;
+  border: 2px solid var(--simpson-outline);
+  border-radius: 5px;
+  background-color: var(--simpson-yellow);
+  color: var(--simpson-blue);
+  font-family: 'Righteous', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.filter-container select:hover {
+  background-color: var(--simpson-blue);
+  color: #fff;
 }
 
 .episodes-grid {
@@ -78,4 +118,42 @@
 .pagination-controls span {
   font-family: 'Luckiest Guy', cursive;
   font-size: 1.2rem;
+}
+
+.card {
+  background-color: #fff;
+  border: 2px solid var(--simpson-outline);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-bottom: 2px solid var(--simpson-outline);
+}
+
+.card-content {
+  padding: 15px;
+  font-family: 'Righteous', sans-serif;
+  color: var(--simpson-blue);
+  text-align: center;
+}
+
+.card-content h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.card-content p {
+  margin: 10px 0 0;
+  font-size: 1rem;
+  color: #333;
 }

@@ -11,7 +11,7 @@ const EpisodesPage = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState("");
-  const itemsPerPage = 8; // Mostrar 8 episodios por página
+  const itemsPerPage = 8; 
 
   useEffect(() => {
     const fetchAllEpisodes = async () => {
@@ -33,7 +33,6 @@ const EpisodesPage = () => {
         setEpisodes(allEpisodes);
         setFilteredEpisodes(allEpisodes);
 
-        // Obtener las temporadas únicas
         const uniqueSeasons = [
           ...new Set(allEpisodes.map((ep) => ep.season)),
         ].sort((a, b) => a - b);
@@ -61,7 +60,7 @@ const EpisodesPage = () => {
       );
       setFilteredEpisodes(filtered);
       setTotalPages(Math.ceil(filtered.length / itemsPerPage));
-      setCurrentPage(1); // Reiniciar a la primera página
+      setCurrentPage(1); 
     }
   };
 
@@ -88,7 +87,6 @@ const EpisodesPage = () => {
 
   return (
     <div className="episodes-container">
-      <h1>Episodios de Los Simpsons</h1>
       <div className="filter-container">
         <label htmlFor="season-select">Filtrar por temporada:</label>
         <select
