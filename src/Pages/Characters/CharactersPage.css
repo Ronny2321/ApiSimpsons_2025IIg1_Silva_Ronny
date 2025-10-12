@@ -1,0 +1,12 @@
+#charactersPage {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* background-color: beige; */
+    object-fit: contain;
+    
+}
