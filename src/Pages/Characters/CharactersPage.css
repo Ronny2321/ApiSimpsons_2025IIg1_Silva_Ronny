@@ -1,12 +1,63 @@
+:root {
+    --simpson-yellow: #fdd835;
+    --simpson-blue: #1976d2;
+    --simpson-outline: #000;
+    --simpson-stroke: 4px;
+    --simpson-card-radius: 12px;
+    --ink-shadow: 0 10px 0 rgba(0, 0, 0, 0.35);
+    --ink-shadow-lg: 0 14px 0 rgba(0, 0, 0, 0.45);
+}
+
 #charactersPage {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
+    background: linear-gradient(180deg, #fff3b8);
+    min-height: 100vh;
+    font-family: 'Luckiest Guy', cursive;
+}
+
+.character-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #ffffff;
+    border-radius: var(--simpson-card-radius);
+    box-shadow: var(--ink-shadow);
+}
+
+.pagination-controls {
+    display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    /* background-color: beige; */
-    object-fit: contain;
-    
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pagination-controls button {
+    background-color: var(--simpson-blue);
+    border: none;
+    border-radius: 50%;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pagination-controls button:hover {
+    background-color: var(--simpson-yellow);
+    transform: scale(1.1);
+}
+
+.pagination-controls span {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
 }

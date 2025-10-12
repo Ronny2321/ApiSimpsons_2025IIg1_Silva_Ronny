@@ -1,0 +1,116 @@
+body.modal-open {
+  overflow: hidden; 
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  z-index: 999;
+  overflow-y: auto; 
+}
+
+.power-modal {
+  position: relative;
+  width: min(680px, 96vw);
+  background: #fffde7;
+  border: 4px solid #000;
+  border-radius: 26px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  max-height: 30vh; 
+  overflow-y: auto;
+}
+
+.close-button {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  background: #f44336;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.close-button:hover {
+  transform: translateY(-2px);
+  background: #e57373;
+}
+
+.modal-header {
+  margin-bottom: 16px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.modal-content {
+  background: #ffffff;
+  border: 2px solid #000;
+  border-radius: 20px;
+  padding: 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+}
+
+.power-phrases ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.power-phrases li {
+  margin-bottom: 6px;
+}
+
+.first-appearance {
+  margin-top: 16px;
+  padding: 12px;
+  background: #fffde7;
+  border: 2px solid #000;
+  border-radius: 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.first-appearance img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.back-button {
+  appearance: none;
+  border: 2px solid #000;
+  background: #fdd835;
+  color: #000;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+  background: #fbc02d;
+  transform: translateY(-2px);
+}

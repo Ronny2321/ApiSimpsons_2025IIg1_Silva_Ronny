@@ -1,34 +1,89 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import CardActionArea from '@mui/material/CardActionArea';
+import React from "react";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import "./CardCharacter.css";
 
-const CardCharacter = ({data}) => {
-  return (
-    <Card sx={{ width: 345 }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="240"
-          image={`https://cdn.thesimpsonsapi.com/500${data.portrait_path}`}
-          alt="green iguana"
-          style={{objectFit: 'contain'}}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {data.name}<br />
-            <p style={{height: '4rem', objectFit: 'cover' ,overflow: 'scroll', backgroundColor: '#dadadaff'}}>{data.occupation}</p>
-          </Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+const CardCharacter = ({ user, onShowPower, isLoadingDetails }) => {
+  if (!user) {
+    return (
+      <Card className="character-card">
+        <CardContent className="character-content">
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="div"
+            className="character-name"
+          >
+            Información no disponible
           </Typography>
         </CardContent>
-      </CardActionArea>
+      </Card>
+    );
+  }
+
+  return (
+    <Card className="character-card">
+      <div className="character-image">
+        {user.image ? (
+          <img
+            src={user.image}
+            alt={user.name}
+            loading="lazy"
+            onError={(e) => {
+              e.target.style.display = "none";
+              e.target.parentElement.innerHTML =
+                '<div style="display:flex;align-items:center;justify-content:center;height:100%;background:linear-gradient(135deg,#f4d03f,#f39c12);color:#000;font-weight:bold;font-size:1.1rem;">Sin imagen</div>';
+            }}
+          />
+        ) : (
+          <div className="no-image">Sin imagen</div>
+        )}
+      </div>
+
+      <CardContent className="character-content">
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          className="character-name"
+        >
+          {user.name || "Nombre desconocido"}
+        </Typography>
+        <Typography variant="body2" className="character-info">
+          <strong>Ocupación: </strong>
+          {user.occupation || "No especificada"}
+        </Typography>
+        <Typography variant="body2" className="character-info">
+          <strong>Género: </strong>
+          {user.gender || "No especificado"}
+        </Typography>
+        <Typography variant="body2" className="character-info">
+          <strong>Edad: </strong>
+          {user.age && user.age > 0 ? user.age : "Desconocida"}
+        </Typography>
+        <Typography variant="body2" className="character-info">
+          <strong>Fecha de nacimiento: </strong>
+          {user.birthdate && user.birthdate.trim() !== ""
+            ? user.birthdate
+            : "Desconocida"}
+        </Typography>
+      </CardContent>
+
+      <CardActions className="character-actions">
+        <Button
+          size="small"
+          className="epic-button"
+          onClick={() => onShowPower(user)}
+          disabled={isLoadingDetails}
+        >
+          {isLoadingDetails ? "Cargando..." : "Ver detalles"}
+        </Button>
+      </CardActions>
     </Card>
   );
-}
+};
 
 export default CardCharacter;

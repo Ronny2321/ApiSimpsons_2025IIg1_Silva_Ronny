@@ -1,33 +1,198 @@
-import { useEffect, useState } from 'react'
-import CardCharacter from '../../Components/CardCharacter/CardCharacter'
-import CircularProgress from '@mui/material/CircularProgress';
-import './CharactersPage.css'
+import { useEffect, useState, useCallback, useRef } from "react";
+import CardCharacter from "../../Components/CardCharacter/CardCharacter";
+import CircularProgress from "@mui/material/CircularProgress";
+import PowerModal from "../../Components/CharacterModal/CharacterModal";
+import "./CharactersPage.css";
+
+const BASE_URL = "https://thesimpsonsapi.com/api";
+const PAGE_SIZE = 8;
+
+const normalizeCharacter = (c, idx = 0) => {
+  return {
+    id: c.id ?? c._id ?? idx,
+    name:
+      (c.name ?? [c.firstName, c.lastName].filter(Boolean).join(" ")) ||
+      "Sin nombre",
+    image:
+      c.image ??
+      c.imageUrl ??
+      (c.portrait_path
+        ? `https://cdn.thesimpsonsapi.com/500${c.portrait_path}`
+        : ""),
+    occupation: c.occupation ?? c.job ?? "No especificada",
+    gender: c.gender ?? c.sex ?? "No especificado",
+    age: c.age ?? null,
+    birthdate: c.birthdate ?? null,
+    first_appearance_ep_id: c.first_appearance_ep_id ?? null,
+    first_appearance_sh_id: c.first_appearance_sh_id ?? null,
+  };
+};
 
 const CharactersPage = () => {
-
   const [characterData, setCharacterData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const pageCacheRef = useRef(new Map());
 
-  useEffect(() => { 
-    fetch('https://thesimpsonsapi.com/api/characters')
-      .then(response => response.json())
-      .then(data => setCharacterData(data.results))
-      .catch(error => console.error('Error fetching data:', error));
-  }, [])
-
-
-return (
-  <div id='charactersPage'>
-    {
-      characterData.length > 0 ? (
-        characterData.map(character => (          
-            <CardCharacter key={character.id} data={character} />          
-        ))
-      ) : (
-        <CircularProgress />
-      )
+  const fetchJSON = async (url, { signal } = {}) => {
+    const res = await fetch(url, {
+      signal,
+      headers: { Accept: "application/json" },
+    });
+    if (!res.ok) {
+      const text = await res.text().catch(() => "");
+      throw new Error(`HTTP ${res.status} - ${text || "Error de red"}`);
     }
-  </div>
-)
-}
+    try {
+      return await res.clone().json();
+    } catch (parseErr) {
+      const text = await res.text().catch(() => "");
+      throw new Error(`Respuesta no JSON: ${parseErr.message} ${text}`);
+    }
+  };
 
-export default CharactersPage
+  const fetchCharacters = useCallback(async (page = 1) => {
+    setLoading(true);
+    setErrorMsg("");
+
+    if (pageCacheRef.current.has(page)) {
+      const cached = pageCacheRef.current.get(page);
+      setCharacterData(cached.results);
+      setTotalPages(cached.totalPages);
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const url = `${BASE_URL}/characters?limit=${PAGE_SIZE}&page=${page}`;
+      const data = await fetchJSON(url);
+
+      let pageResults = [];
+      let pages = 1;
+
+      if (Array.isArray(data)) {
+        const all = data;
+        pages = Math.max(1, Math.ceil(all.length / PAGE_SIZE));
+        const start = (page - 1) * PAGE_SIZE;
+        const paged = all.slice(start, start + PAGE_SIZE);
+        pageResults = paged.map((c, idx) => normalizeCharacter(c, start + idx));
+      } else {
+        const results = Array.isArray(data?.results)
+          ? data.results
+          : Array.isArray(data?.data)
+          ? data.data
+          : Array.isArray(data)
+          ? data
+          : [];
+        const pageSlice = results.slice(0, PAGE_SIZE);
+        const pagesFromInfo = Number(data?.info?.pages);
+        const totalCount =
+          Number(
+            data?.info?.count ?? data?.totalCount ?? data?.total ?? data?.count
+          ) || NaN;
+        pages =
+          !Number.isNaN(pagesFromInfo) && pagesFromInfo > 0
+            ? pagesFromInfo
+            : Number(data?.totalPages) ||
+              (!Number.isNaN(totalCount) && totalCount > 0
+                ? Math.max(1, Math.ceil(totalCount / PAGE_SIZE))
+                : Number.isFinite(Number(data?.pages))
+                ? Number(data.pages)
+                : 1);
+        const startIndex = (page - 1) * PAGE_SIZE;
+        pageResults = pageSlice.map((c, idx) =>
+          normalizeCharacter(c, startIndex + idx)
+        );
+      }
+
+      setTotalPages(Math.max(1, pages || 1));
+      setCharacterData(pageResults);
+
+      pageCacheRef.current.set(page, {
+        results: pageResults,
+        totalPages: Math.max(1, pages || 1),
+      });
+    } catch (err) {
+      console.error(err);
+      setErrorMsg("No se pudieron cargar los personajes. Intenta de nuevo.");
+      setCharacterData([]);
+      setTotalPages(1);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchCharacters(currentPage);
+  }, [currentPage, fetchCharacters]);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
+  };
+
+  const handleShowPower = (character) => {
+    setSelectedCharacter(character);
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setSelectedCharacter(null);
+  };
+
+  return (
+    <div id="charactersPage">
+      {loading ? (
+        <CircularProgress />
+      ) : errorMsg ? (
+        <div className="error-message">{errorMsg}</div>
+      ) : (
+        <>
+          <div className="character-grid">
+            {characterData.map((character) => (
+              <CardCharacter
+                key={character.id}
+                user={character}
+                onShowPower={handleShowPower}
+              />
+            ))}
+          </div>
+          <div className="pagination-controls">
+            <button onClick={handlePrevPage} disabled={currentPage === 1}>
+              Anterior
+            </button>
+            <span>
+              Página {currentPage} de {totalPages}
+            </span>
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+            >
+              Siguiente
+            </button>
+          </div>
+        </>
+      )}
+
+      <PowerModal
+        character={selectedCharacter}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
+    </div>
+  );
+};
+
+export default CharactersPage;
