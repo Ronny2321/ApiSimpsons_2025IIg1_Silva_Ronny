@@ -4,11 +4,14 @@ import "./EpisodesPage.css";
 
 const EpisodesPage = () => {
   const [episodes, setEpisodes] = useState([]);
+  const [filteredEpisodes, setFilteredEpisodes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const itemsPerPage = 8; 
+  const [seasons, setSeasons] = useState([]);
+  const [selectedSeason, setSelectedSeason] = useState("");
+  const itemsPerPage = 8; // Mostrar 8 episodios por página
 
   useEffect(() => {
     const fetchAllEpisodes = async () => {
@@ -28,6 +31,13 @@ const EpisodesPage = () => {
         }
 
         setEpisodes(allEpisodes);
+        setFilteredEpisodes(allEpisodes);
+
+        // Obtener las temporadas únicas
+        const uniqueSeasons = [
+          ...new Set(allEpisodes.map((ep) => ep.season)),
+        ].sort((a, b) => a - b);
+        setSeasons(uniqueSeasons);
         setTotalPages(Math.ceil(allEpisodes.length / itemsPerPage));
       } catch {
         setError("No se pudieron cargar los episodios. Intenta de nuevo.");
@@ -38,6 +48,22 @@ const EpisodesPage = () => {
 
     fetchAllEpisodes();
   }, []);
+
+  const handleSeasonChange = (event) => {
+    const season = event.target.value;
+    setSelectedSeason(season);
+    if (season === "") {
+      setFilteredEpisodes(episodes);
+      setTotalPages(Math.ceil(episodes.length / itemsPerPage));
+    } else {
+      const filtered = episodes.filter(
+        (ep) => ep.season === parseInt(season)
+      );
+      setFilteredEpisodes(filtered);
+      setTotalPages(Math.ceil(filtered.length / itemsPerPage));
+      setCurrentPage(1); // Reiniciar a la primera página
+    }
+  };
 
   const handlePrevPage = () => {
     if (currentPage > 1) {
@@ -52,7 +78,10 @@ const EpisodesPage = () => {
   };
 
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentItems = episodes.slice(startIndex, startIndex + itemsPerPage);
+  const currentItems = filteredEpisodes.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
 
   if (loading) return <div>Cargando episodios...</div>;
   if (error) return <div>{error}</div>;
@@ -60,6 +89,21 @@ const EpisodesPage = () => {
   return (
     <div className="episodes-container">
       <h1>Episodios de Los Simpsons</h1>
+      <div className="filter-container">
+        <label htmlFor="season-select">Filtrar por temporada:</label>
+        <select
+          id="season-select"
+          value={selectedSeason}
+          onChange={handleSeasonChange}
+        >
+          <option value="">Todas las temporadas</option>
+          {seasons.map((season) => (
+            <option key={season} value={season}>
+              Temporada {season}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="episodes-grid">
         {currentItems.map((episode) => (
           <CardEpisodes key={episode.id} episode={episode} />
