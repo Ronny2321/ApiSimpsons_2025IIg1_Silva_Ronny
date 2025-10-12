@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback, useRef } from "react";
-import CardCharacter from "../../Components/CardCharacter/CardCharacter";
+import CardCharacter from "../../Components/Character/CardCharacter/CardCharacter";
 import CircularProgress from "@mui/material/CircularProgress";
-import PowerModal from "../../Components/CharacterModal/CharacterModal";
+import PowerModal from "../../Components/Character/CharacterModal/CharacterModal";
 import "./CharactersPage.css";
 
 const BASE_URL = "https://thesimpsonsapi.com/api";

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CardEpisodes from "../../Components/CardEpisodes/CardEpisodes";
+import CardEpisodes from "../../Components/Episodes/CardEpisodes/CardEpisodes";
 import "./EpisodesPage.css";
 
 const EpisodesPage = () => {

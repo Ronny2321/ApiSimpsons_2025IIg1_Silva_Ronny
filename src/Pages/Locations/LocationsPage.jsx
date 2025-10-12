@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CardLocation from "../../Components/CardLocation/CardLocation";
+import CardLocation from "../../Components/Location/CardLocation/CardLocation";
 import "./LocationsPage.css";
 
 const LocationsPage = () => {
