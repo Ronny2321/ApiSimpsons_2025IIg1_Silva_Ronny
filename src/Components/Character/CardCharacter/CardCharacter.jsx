@@ -63,23 +63,46 @@ const CardCharacter = ({ user }) => {
           >
             {user.name || "Nombre desconocido"}
           </Typography>
-          <Typography variant="body2" className="character-info">
-            <strong>Estado: </strong>
-            {user.status || "Desconocido"}
-          </Typography>
+          <div
+            className={`character-status ${
+              user.status?.toLowerCase() !== "alive" ? "red" : ""
+            }`}
+          >
+            <span>{user.status || "Desconocido"}</span>
+          </div>
           <Typography variant="body2" className="character-info">
             <strong>Día de nacimiento: </strong>
             {user.birthdate || "Desconocida"}
           </Typography>
-          <Typography variant="body2" className="character-info">
-            <strong>Edad: </strong>
-            {user.age && user.age > 0 ? user.age : "Desconocida"}
-          </Typography>
-          <Typography variant="body2" className="character-info">
-            <strong>Género: </strong>
-            {user.gender || "No especificado"}
-          </Typography>
         </CardContent>
+        <div
+          className={`character-gender ${
+            user.gender?.toLowerCase() === "male"
+              ? "male"
+              : user.gender?.toLowerCase() === "female"
+              ? "female"
+              : ""
+          }`}
+        >
+          <span>{user.gender || "No especificado"}</span>
+        </div>
+        <div
+          className={`character-age ${
+            user.age && user.age > 0 && user.age <= 10
+              ? "red"
+              : user.age > 10 && user.age <= 18
+              ? "green"
+              : user.age > 18 && user.age <= 28
+              ? "orange"
+              : user.age > 28 && user.age <= 50
+              ? "blue"
+              : user.age > 50
+              ? "purple"
+              : ""
+          }`}
+        >
+          <span>{user.age && user.age > 0 ? user.age : "?"}</span>
+        </div>
       </Card>
 
       <CharacterModal

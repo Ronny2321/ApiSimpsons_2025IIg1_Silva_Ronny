@@ -70,7 +70,7 @@ const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
       : "");
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
+    <div className="modal-overlay">
       <dialog
         className="power-modal"
         role="dialog"
@@ -80,7 +80,6 @@ const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
             ? `Detalles de ${characterDetails.name}`
             : "Detalles del personaje"
         }
-        onClick={(e) => e.stopPropagation()}
         ref={dialogRef}
         tabIndex={-1}
         style={{ maxHeight: "90vh" }}
