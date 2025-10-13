@@ -1,54 +1,172 @@
 .episode-card {
-  background: linear-gradient(180deg, #fffde7, #fdd835);
-  border: 2px solid #000;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background:
+    radial-gradient(120% 90% at 50% -20%, rgba(255, 255, 255, .7), transparent 60%) no-repeat,
+    var(--cloud, none),
+    linear-gradient(180deg, var(--simpson-sky, #87CEEB) 0%, #cbeeff 85%) no-repeat;
+  border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
+  border-radius: 18px;
   overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: var(--ink-shadow, 0 6px 0 rgba(0, 0, 0, .35));
+  cursor: pointer;
+  filter: url(#cartoon-outline);
+  transition: transform .16s ease, box-shadow .16s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .episode-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-6px) rotate(-.3deg);
 }
 
-.episode-title {
-  font-size: 1.8rem;
-  text-align: center;
-  margin: 6px 0;
+.ep-top {
+  position: relative;
+  border-bottom: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
+  background: linear-gradient(135deg, #fff59d, #fbc02d);
+  display: grid;
+  place-items: center;
+  min-height: 190px;
+}
+
+.ep-code {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fff;
   color: #000;
-  text-shadow: 2px 2px #fdd835;
-  font-family: 'Luckiest Guy', cursive;
+  font-weight: 900;
+  font-family: 'Righteous', sans-serif;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
+  box-shadow: var(--ink-shadow, 0 6px 0 rgba(0, 0, 0, .35));
 }
 
-.episode-description {
+.season-ribbon {
+  position: absolute;
+  top: 12px;
+  left: -6px;
+  transform: rotate(-6deg);
+  background: var(--simpson-yellow, #FFD90F);
+  border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
+  border-radius: 10px;
+  padding: 6px 12px;
+  box-shadow: var(--ink-shadow, 0 6px 0 rgba(0, 0, 0, .35));
   font-family: 'Righteous', sans-serif;
-  color: #333;
-  line-height: 1.5;
-  margin-top: 10px;
+}
+
+.season-ribbon span {
+  color: #000;
+  font-weight: 900;
 }
 
 .episode-image {
   width: 100%;
-  height: 200px;
-  background: linear-gradient(135deg, #fff59d, #fbc02d);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 2px solid #000;
+  height: 210px;
+  display: grid;
+  place-items: center;
   overflow: hidden;
 }
 
 .episode-image img {
-  display: block;
   height: 100%;
   width: auto;
   object-fit: contain;
+  display: block;
 }
 
-.episode-info {
+.image-fallback {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  width: 100%;
+  font-weight: 900;
   font-family: 'Righteous', sans-serif;
-  color: #333;
-  line-height: 1.5;
-  margin-top: 10px;
+  background: linear-gradient(135deg, #fff59d, #fbc02d);
+  color: #000;
+}
+
+.ep-body {
+  background: var(--simpson-cream, #FFFDE7);
+}
+
+.episode-title {
+  margin: 10px 0 6px;
+  font-size: 1.6rem;
+  text-align: center;
+  color: #000;
+  text-shadow: 2px 2px var(--simpson-yellow, #FFD90F);
+  font-family: 'Luckiest Guy', cursive;
+  line-height: 1.05;
+  filter: url(#cartoon-outline);
+  word-break: break-word;
+}
+
+
+
+.ep-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 6px 0 12px;
+}
+
+.chip {
+  background: #fff;
+  border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-family: 'Righteous', sans-serif;
+  text-align: center;
+  box-shadow: var(--ink-shadow, 0 6px 0 rgba(0, 0, 0, .35));
+  filter: url(#cartoon-outline);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chip-emoji {
+  margin-right: 6px;
+}
+
+.ep-cta {
+  display: flex;
+  justify-content: center;
+}
+
+.details-button {
+  border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515) !important;
+  border-radius: 999px !important;
+  padding: 10px 18px !important;
+  font-weight: 900 !important;
+  font-family: 'Righteous', sans-serif !important;
+  box-shadow: var(--ink-shadow, 0 6px 0 rgba(0, 0, 0, .35)) !important;
+  filter: url(#cartoon-outline);
+  background: var(--simpson-blue, #00A2E8) !important;
+  color: #fff !important;
+  text-transform: none !important;
+  transition: transform .12s ease, background .12s ease !important;
+}
+
+.details-button:hover {
+  transform: translateY(-2px) !important;
+  background: var(--simpson-yellow, #FFD90F) !important;
+  color: #000 !important;
+}
+
+.date {
+  text-align: center;
+  font-family: 'Righteous', sans-serif;
+  font-size: 0.95rem;
+  color: #000;
+  padding: 10px 0;
+}
+
+@media (max-width: 520px) {
+  .ep-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .episode-title {
+    font-size: 1.4rem;
+  }
 }
