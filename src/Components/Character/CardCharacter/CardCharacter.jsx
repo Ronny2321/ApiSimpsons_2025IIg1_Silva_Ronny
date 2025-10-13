@@ -53,25 +53,22 @@ const CardCharacter = ({ user, onShowPower, isLoadingDetails }) => {
           {user.name || "Nombre desconocido"}
         </Typography>
         <Typography variant="body2" className="character-info">
-          <strong>Ocupación: </strong>
-          {user.occupation || "No especificada"}
+          <strong>Estado: </strong>
+          {user.status || "Desconocido"}
         </Typography>
         <Typography variant="body2" className="character-info">
-          <strong>Género: </strong>
-          {user.gender || "No especificado"}
+          <strong>Día de nacimiento: </strong>
+          {user.birthdate || "Desconocida"}
         </Typography>
         <Typography variant="body2" className="character-info">
           <strong>Edad: </strong>
           {user.age && user.age > 0 ? user.age : "Desconocida"}
         </Typography>
         <Typography variant="body2" className="character-info">
-          <strong>Fecha de nacimiento: </strong>
-          {user.birthdate && user.birthdate.trim() !== ""
-            ? user.birthdate
-            : "Desconocida"}
+          <strong>Género: </strong>
+          {user.gender || "No especificado"}
         </Typography>
       </CardContent>
-
       <CardActions className="character-actions">
         <Button
           size="small"

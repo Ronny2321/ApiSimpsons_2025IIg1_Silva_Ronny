@@ -23,6 +23,7 @@ const normalizeCharacter = (c, idx = 0) => {
     gender: c.gender ?? c.sex ?? "No especificado",
     age: c.age ?? null,
     birthdate: c.birthdate ?? null,
+    status: c.status ?? "Desconocido",
     first_appearance_ep_id: c.first_appearance_ep_id ?? null,
     first_appearance_sh_id: c.first_appearance_sh_id ?? null,
   };

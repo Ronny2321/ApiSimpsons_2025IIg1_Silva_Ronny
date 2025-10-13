@@ -1,95 +1,238 @@
-import React, { useEffect, useState } from 'react';
-import './PowerModal2.css';
+import React, { useEffect, useRef, useState } from "react";
+import "./PowerModal2.css";
 
 const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
   const [characterDetails, setCharacterDetails] = useState(null);
+  const [status, setStatus] = useState("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+  const dialogRef = useRef(null);
+  const abortRef = useRef(null);
 
   useEffect(() => {
-    console.log('Estado del modal:', isOpen);
-    console.log('ID del personaje:', characterId);
+    if (!isOpen) return;
 
-    if (isOpen && characterId) {
-      const fetchCharacterDetails = async () => {
-        try {
-          console.log('Fetching details for character ID:', characterId);
-          const response = await fetch(`https://thesimpsonsapi.com/api/characters/${characterId}`);
-          if (!response.ok) {
-            throw new Error(`Error HTTP: ${response.status}`);
-          }
-          const data = await response.json();
-          console.log('Datos obtenidos de la API:', data);
-          setCharacterDetails(data);
-        } catch (error) {
-          console.error('Error fetching character details:', error);
-        }
-      };
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
 
-      fetchCharacterDetails();
-    } else {
-      setCharacterDetails(null); 
+    const onKey = (e) => {
+      if (e.key === "Escape") onClose?.();
+    };
+    document.addEventListener("keydown", onKey);
+
+    setTimeout(() => dialogRef.current?.focus(), 0);
+
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [isOpen, onClose]);
+
+  useEffect(() => {
+    if (!isOpen || !characterId) {
+      setCharacterDetails(null);
+      setStatus("idle");
+      setErrorMsg("");
+      abortRef.current?.abort?.();
+      return;
     }
+
+    setStatus("loading");
+    setErrorMsg("");
+    const controller = new AbortController();
+    abortRef.current = controller;
+
+    (async () => {
+      try {
+        const res = await fetch(
+          `https://thesimpsonsapi.com/api/characters/${characterId}`,
+          { signal: controller.signal }
+        );
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        setCharacterDetails(data);
+        setStatus("success");
+      } catch (err) {
+        if (controller.signal.aborted) return;
+        setStatus("error");
+        setErrorMsg(err?.message || "Error desconocido");
+      }
+    })();
+
+    return () => controller.abort();
   }, [isOpen, characterId]);
 
-  if (!isOpen || !characterDetails) return null;
+  if (!isOpen) return null;
+
+  const imgSrc =
+    characterDetails?.image ||
+    (characterDetails?.portrait_path
+      ? `https://cdn.thesimpsonsapi.com/500${characterDetails.portrait_path}`
+      : "");
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="power-modal" onClick={(e) => e.stopPropagation()}>
-        <button className="close-button" onClick={onClose}>✖</button>
+      <div
+        className="power-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label={
+          characterDetails?.name
+            ? `Detalles de ${characterDetails.name}`
+            : "Detalles del personaje"
+        }
+        onClick={(e) => e.stopPropagation()}
+        ref={dialogRef}
+        tabIndex={-1}
+      >
+        <button className="close-button" onClick={onClose} aria-label="Cerrar">
+          ✖
+        </button>
 
         <div className="modal-header">
           <div className="character-avatar">
-            <img
-              src={characterDetails.image || `https://cdn.thesimpsonsapi.com/500${characterDetails.portrait_path}`}
-              alt={characterDetails.name}
-              loading="lazy"
-              onError={(e) => {
-                e.target.style.display = "none";
-                e.target.parentElement.innerHTML =
-                  '<div style="display:flex;align-items:center;justify-content:center;height:100%;background:linear-gradient(135deg,#f4d03f,#f39c12);color:#000;font-weight:bold;font-size:1.1rem;">Sin imagen</div>';
-              }}
-            />
+            {imgSrc ? (
+              <img
+                src={imgSrc}
+                alt={characterDetails?.name || "Avatar"}
+                loading="lazy"
+                onError={(e) => {
+                  e.currentTarget.replaceWith(
+                    Object.assign(document.createElement("div"), {
+                      className: "image-fallback",
+                      innerText: "Sin imagen",
+                    })
+                  );
+                }}
+              />
+            ) : (
+              <div className="image-fallback">Sin imagen</div>
+            )}
           </div>
           <div className="character-title">
-            <h2>{characterDetails.name}</h2>
+            <h2 className="title">{characterDetails?.name || "Personaje"}</h2>
+            <p
+              className="character-occupation"
+              title={characterDetails?.occupation || "No especificada"}
+            >
+              {characterDetails?.occupation || "No especificada"}
+            </p>
           </div>
         </div>
 
-        <div className="modal-content">
-          {characterDetails.phrases && characterDetails.phrases.length > 0 && (
-            <div className="power-phrases">
-              <h3>Frases</h3>
-              <ul>
-                {characterDetails.phrases.map((phrase, index) => (
-                  <li key={index}>{phrase}</li>
-                ))}
-              </ul>
+        <div className="modal-body">
+          {status === "loading" && (
+            <div className="skeleton">
+              <div className="sk-block" />
+              <div className="sk-block" />
+              <div className="sk-row" />
             </div>
           )}
 
-          {characterDetails.first_appearance_ep && (
-            <div className="first-appearance">
-              <h3>Primera Aparición (Episodio)</h3>
-              <img
-                src={`https://cdn.thesimpsonsapi.com/500${characterDetails.first_appearance_ep.image_path}`}
-                alt={characterDetails.first_appearance_ep.name}
-              />
-              <p><strong>{characterDetails.first_appearance_ep.name}</strong></p>
-              <p>{characterDetails.first_appearance_ep.description}</p>
+          {status === "error" && (
+            <div className="error-card">
+              <p>
+                <strong>Ups…</strong> no pudimos cargar los detalles.
+              </p>
+              <code>{errorMsg}</code>
             </div>
           )}
 
-          {characterDetails.first_appearance_sh && (
-            <div className="first-appearance">
-              <h3>Primera Aparición (Corto)</h3>
-              <img
-                src={`https://cdn.thesimpsonsapi.com/500${characterDetails.first_appearance_sh.image_path}`}
-                alt={characterDetails.first_appearance_sh.name}
-              />
-              <p><strong>{characterDetails.first_appearance_sh.name}</strong></p>
-              <p>{characterDetails.first_appearance_sh.description}</p>
+          {status === "success" && characterDetails && (
+            <div className="content-grid">
+              {Array.isArray(characterDetails.phrases) &&
+                characterDetails.phrases.length > 0 && (
+                  <section className="card-section">
+                    <h3 className="section-title">Frases</h3>
+                    <ul className="phrases-list">
+                      {characterDetails.phrases.map((phrase, idx) => (
+                        <li className="phrase" key={idx}>
+                          <span className="quote-mark" aria-hidden>
+                            “
+                          </span>
+                          <span className="phrase-text">{phrase}</span>
+                          <span className="quote-mark" aria-hidden>
+                            ”
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                )}
+
+              {(characterDetails.first_appearance_ep ||
+                characterDetails.first_appearance_sh) && (
+                <section className="card-section">
+                  <h3 className="section-title">Primeras apariciones</h3>
+
+                  <div className="appear-grid">
+                    {characterDetails.first_appearance_ep && (
+                      <article className="appear-card">
+                        <div className="appear-thumb">
+                          <img
+                            src={`https://cdn.thesimpsonsapi.com/500${characterDetails.first_appearance_ep.image_path}`}
+                            alt={characterDetails.first_appearance_ep.name}
+                            loading="lazy"
+                            onError={(e) => {
+                              e.currentTarget.replaceWith(
+                                Object.assign(document.createElement("div"), {
+                                  className: "image-fallback",
+                                  innerText: "Sin imagen",
+                                })
+                              );
+                            }}
+                          />
+                        </div>
+                        <div className="appear-info">
+                          <h4 className="appear-title">
+                            {characterDetails.first_appearance_ep.name}
+                          </h4>
+                          <p className="appear-desc">
+                            {characterDetails.first_appearance_ep.description}
+                          </p>
+                        </div>
+                        <span className="appear-badge">Episodio</span>
+                      </article>
+                    )}
+
+                    {characterDetails.first_appearance_sh && (
+                      <article className="appear-card">
+                        <div className="appear-thumb">
+                          <img
+                            src={`https://cdn.thesimpsonsapi.com/500${characterDetails.first_appearance_sh.image_path}`}
+                            alt={characterDetails.first_appearance_sh.name}
+                            loading="lazy"
+                            onError={(e) => {
+                              e.currentTarget.replaceWith(
+                                Object.assign(document.createElement("div"), {
+                                  className: "image-fallback",
+                                  innerText: "Sin imagen",
+                                })
+                              );
+                            }}
+                          />
+                        </div>
+                        <div className="appear-info">
+                          <h4 className="appear-title">
+                            {characterDetails.first_appearance_sh.name}
+                          </h4>
+                          <p className="appear-desc">
+                            {characterDetails.first_appearance_sh.description}
+                          </p>
+                        </div>
+                        <span className="appear-badge">Corto</span>
+                      </article>
+                    )}
+                  </div>
+                </section>
+              )}
             </div>
           )}
+        </div>
+
+        <div className="modal-footer">
+          <button className="back-button" onClick={onClose}>
+            Volver
+          </button>
         </div>
       </div>
     </div>
