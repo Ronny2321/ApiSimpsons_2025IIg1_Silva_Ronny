@@ -11,7 +11,6 @@ const CardLocation = ({ location }) => {
     : null;
 
   const toggleModal = () => {
-    console.log("ID del lugar:", location.id); // Log para verificar el ID del lugar
     setIsModalOpen(!isModalOpen);
   };
 
@@ -30,7 +29,6 @@ const CardLocation = ({ location }) => {
         }}
         aria-label={`Lugar: ${location?.name || "Desconocido"}`}
       >
-        {/* Cinta y badge */}
         <div className="loc-ribbon" aria-hidden>
           <span>Ciudad</span>
         </div>
@@ -42,7 +40,6 @@ const CardLocation = ({ location }) => {
           <span className="pin" aria-hidden></span> {town}
         </div>
 
-        {/* Imagen */}
         <figure className="location-figure">
           {imgSrc ? (
             <img
@@ -65,7 +62,6 @@ const CardLocation = ({ location }) => {
           <figcaption className="visually-hidden">{location?.name}</figcaption>
         </figure>
 
-        {/* Contenido */}
         <div className="location-body">
           <h3 className="location-title">{location?.name || "Lugar"}</h3>
           <div className="location-meta">
@@ -79,7 +75,7 @@ const CardLocation = ({ location }) => {
       <LocationModal
         isOpen={isModalOpen}
         onClose={toggleModal}
-        locationId={location.id} // Pasar el ID del lugar al modal
+        locationId={location.id} 
         image={imgSrc}
         description={location?.description}
       />
