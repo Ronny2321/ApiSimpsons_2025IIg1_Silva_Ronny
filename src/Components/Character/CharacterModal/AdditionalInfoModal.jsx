@@ -71,7 +71,7 @@ const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div
+      <dialog
         className="power-modal"
         role="dialog"
         aria-modal="true"
@@ -83,43 +83,34 @@ const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
         onClick={(e) => e.stopPropagation()}
         ref={dialogRef}
         tabIndex={-1}
+        style={{ maxHeight: "90vh" }}
       >
         <button className="close-button" onClick={onClose} aria-label="Cerrar">
           ✖
         </button>
 
-        <div className="modal-header">
-          <div className="character-avatar">
-            {imgSrc ? (
-              <img
-                src={imgSrc}
-                alt={characterDetails?.name || "Avatar"}
-                loading="lazy"
-                onError={(e) => {
-                  e.currentTarget.replaceWith(
-                    Object.assign(document.createElement("div"), {
-                      className: "image-fallback",
-                      innerText: "Sin imagen",
-                    })
-                  );
-                }}
-              />
-            ) : (
-              <div className="image-fallback">Sin imagen</div>
-            )}
-          </div>
+        <header className="modal-header">
           <div className="character-title">
+            <figure className="character-avatar">
+              {imgSrc ? (
+                <img
+                  src={imgSrc}
+                  alt={characterDetails?.name || "Avatar"}
+                  loading="lazy"
+                />
+              ) : (
+                <div className="image-fallback">Sin imagen</div>
+              )}
+            </figure>
+
             <h2 className="title">{characterDetails?.name || "Personaje"}</h2>
-            <p
-              className="character-occupation"
-              title={characterDetails?.occupation || "No especificada"}
-            >
+            <p className="character-occupation">
               {characterDetails?.occupation || "No especificada"}
             </p>
           </div>
-        </div>
+        </header>
 
-        <div className="modal-body">
+        <main className="modal-body">
           {status === "loading" && (
             <div className="skeleton">
               <div className="sk-block" />
@@ -138,10 +129,10 @@ const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
           )}
 
           {status === "success" && characterDetails && (
-            <div className="content-grid">
+            <section className="content-grid">
               {Array.isArray(characterDetails.phrases) &&
                 characterDetails.phrases.length > 0 && (
-                  <section className="card-section">
+                  <article className="card-section">
                     <h3 className="section-title">Frases</h3>
                     <ul className="phrases-list">
                       {characterDetails.phrases.map((phrase, idx) => (
@@ -156,7 +147,7 @@ const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
                         </li>
                       ))}
                     </ul>
-                  </section>
+                  </article>
                 )}
 
               {(characterDetails.first_appearance_ep ||
@@ -225,16 +216,14 @@ const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
                   </div>
                 </section>
               )}
-            </div>
+            </section>
           )}
-        </div>
+        </main>
 
-        <div className="modal-footer">
-          <button className="back-button" onClick={onClose}>
-            Volver
-          </button>
-        </div>
-      </div>
+        <button className="return-button" onClick={onClose} aria-label="Volver">
+          Volver
+        </button>
+      </dialog>
     </div>
   );
 };
