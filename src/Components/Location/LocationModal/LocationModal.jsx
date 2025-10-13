@@ -7,6 +7,17 @@ const LocationModal = ({ isOpen, onClose, locationId }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
     if (isOpen && locationId) {
       console.log("ID recibido en LocationModal:", locationId);
       const fetchLocationData = async () => {
@@ -36,8 +47,8 @@ const LocationModal = ({ isOpen, onClose, locationId }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+    <div className="modal-overlay">
+      <div className="modal-content">
         <button className="modal-close" onClick={onClose}>
           &times;
         </button>
