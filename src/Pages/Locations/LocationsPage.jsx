@@ -7,7 +7,7 @@ const LocationsPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
+  const itemsPerPage = 9;
 
   useEffect(() => {
     const fetchLocations = async () => {
