@@ -317,3 +317,52 @@
   background: #9c27b0;
   color: #fff;
 }
+
+.chip-birth {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #fff;
+  border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
+  border-radius: 999px;
+  box-shadow: var(--ink-shadow, 0 6px 0 rgba(0, 0, 0, .35));
+  filter: url(#cartoon-outline);
+  font-family: 'Righteous', sans-serif;
+  color: #000;
+  line-height: 1;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.chip-birth .chip-emoji {
+  font-size: 1.1rem;
+}
+
+.chip-birth .chip-label {
+  font-weight: 900;
+  margin-right: 2px;
+}
+
+.chip-birth .chip-value {
+  font-weight: 600;
+  max-width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chip-birth {
+  background:
+    radial-gradient(120% 90% at 50% -20%, rgba(255, 255, 255, .7), transparent 60%) no-repeat,
+    linear-gradient(180deg, #fffde7, #ffe27a);
+}
+
+.character-card:hover .chip-birth {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 420px) {
+  .chip-birth .chip-value {
+    max-width: 50%;
+  }
+}

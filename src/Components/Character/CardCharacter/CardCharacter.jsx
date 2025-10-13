@@ -70,10 +70,15 @@ const CardCharacter = ({ user }) => {
           >
             <span>{user.status || "Desconocido"}</span>
           </div>
-          <Typography variant="body2" className="character-info">
-            <strong>Día de nacimiento: </strong>
-            {user.birthdate || "Desconocida"}
-          </Typography>
+          <div
+            className="chip chip-birth"
+            title={user.birthdate || "Desconocida"}
+          >
+            <span className="chip-label">Nacimiento:</span>
+            <span className="chip-value">
+              {user.birthdate || "Desconocida"}
+            </span>
+          </div>
         </CardContent>
         <div
           className={`character-gender ${
