@@ -1,17 +1,36 @@
-import React from 'react'
-import './NavBar.css'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { NavLink } from "react-router-dom";
+import "./NavBar.css";
 
-const NavBar = () => {
+const NavBar = ({ isOpen, onClose }) => {
   return (
-    <nav>
-      <ul>                
-        <li><Link to="/characters">Personajes</Link></li>
-        <li> <Link to="/locations">Lugares</Link></li>
-        <li> <Link to="/episodes">Episodios</Link></li>
+    <nav
+      className={`app-nav ${isOpen ? "open" : ""}`}
+      aria-label="Navegación principal"
+    >
+      <button className="nav-close" aria-label="Cerrar menú" onClick={onClose}>
+        ✖
+      </button>
+
+      <ul className="nav-list">
+        <li>
+          <NavLink to="/characters" className="nav-link" onClick={onClose}>
+            Personajes
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/locations" className="nav-link" onClick={onClose}>
+            Lugares
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/episodes" className="nav-link" onClick={onClose}>
+            Episodios
+          </NavLink>
+        </li>
       </ul>
     </nav>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;

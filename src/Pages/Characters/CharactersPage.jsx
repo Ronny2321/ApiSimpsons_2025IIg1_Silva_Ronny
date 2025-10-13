@@ -5,7 +5,7 @@ import PowerModal from "../../Components/Character/CharacterModal/CharacterModal
 import "./CharactersPage.css";
 
 const BASE_URL = "https://thesimpsonsapi.com/api";
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 9;
 
 const normalizeCharacter = (c, idx = 0) => {
   return {

@@ -93,6 +93,31 @@
   color: #000 !important;
 }
 
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Mostrar 3 tarjetas por fila */
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 0 rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 768px) {
+  .character-grid {
+    grid-template-columns: repeat(2, 1fr); /* Ajustar a 2 tarjetas por fila en pantallas pequeñas */
+  }
+}
+
+@media (max-width: 480px) {
+  .character-grid {
+    grid-template-columns: 1fr; /* Mostrar 1 tarjeta por fila en pantallas muy pequeñas */
+  }
+}
+
 @media (max-width: 900px) {
   .character-image { height: 260px; }
 }

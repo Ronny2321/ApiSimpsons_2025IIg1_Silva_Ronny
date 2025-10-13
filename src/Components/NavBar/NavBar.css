@@ -1,50 +1,88 @@
-nav {
-    background-color: var(--simpson-yellow);
-    padding: 20px;
-    height: 100vh;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-right: var(--simpson-stroke) solid var(--simpson-outline);
-    box-shadow: var(--ink-shadow);
+.app-nav {
     position: sticky;
-    top: 0;
+    top: 12px;
+    align-self: start;
+    width: 300px;
+    height: calc(100dvh - 24px);
+    overflow: auto;
+
+    background: var(--simpson-yellow);
+    padding: 16px;
+    border: var(--simpson-stroke) solid var(--simpson-outline);
+    border-radius: 16px;
+    box-shadow: var(--ink-shadow);
     font-family: 'Luckiest Guy', cursive;
+    filter: url(#cartoon-outline);
+    z-index: 40;
+    margin-left: 0;
 }
 
-nav ul {
-    list-style-type: none;
-    width: 100%;
-    padding: 0;
+@media (max-width: 991px) {
+    .app-nav {
+        position: fixed;
+        top: 12px;
+        bottom: 12px;
+        left: 12px;
+        width: 86vw;
+        max-width: 320px;
+        transform: translateX(-120%);
+        transition: transform .2s ease-out;
+    }
+
+    .app-nav.open {
+        transform: translateX(0);
+    }
 }
 
-nav ul li {
-    margin: 20px 0;
-    text-align: center;
-    font-size: 1.2em;
+.nav-close {
+    display: none;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: var(--simpson-stroke) solid var(--simpson-outline);
+    background: #fff;
+    cursor: pointer;
+    box-shadow: var(--ink-shadow);
 }
 
-nav ul li a {
-    font-size: 1.5rem;
+@media (max-width: 991px) {
+    .nav-close {
+        display: block;
+    }
+}
+
+.nav-list {
+    list-style: none;
+    padding: 6px 0 0;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     text-decoration: none;
     color: var(--simpson-outline);
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 10px;
+    font-size: 1.35rem;
+    padding: 10px 12px;
     border-radius: var(--simpson-card-radius);
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: var(--simpson-stroke) solid var(--simpson-outline);
+    background: #fff;
+    box-shadow: var(--ink-shadow);
+    transition: transform .12s ease, background .12s ease;
 }
 
-nav ul li a:hover {
+.nav-link:hover {
+    transform: translateY(-2px);
+    background: var(--simpson-cream);
+}
+
+.nav-link.active {
+    background: var(--simpson-blue);
     color: #fff;
-    background-color: var(--simpson-blue);
-    transform: scale(1.1);
-}
-
-nav ul li a i {
-    font-size: 1.5rem; /* Tamaño del icono */
 }

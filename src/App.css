@@ -1,9 +1,69 @@
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-#container-body{
-  display: flex;
-} 
+:root {
+  --simpson-yellow: #FFD90F;
+  --simpson-blue: #00A2E8;
+  --simpson-sky: #87CEEB;
+  --simpson-cream: #FFFDE7;
+  --simpson-outline: #151515;
+  --simpson-stroke: 3px;
+  --simpson-card-radius: 16px;
+  --ink-shadow: 0 6px 0 rgba(0, 0, 0, .35);
+  --ink-shadow-lg: 0 10px 0 rgba(0, 0, 0, .35);
+  --cloud:
+    radial-gradient(ellipse at 30% 30%, #fff 55%, transparent 58%),
+    radial-gradient(ellipse at 55% 40%, #fff 45%, transparent 48%),
+    radial-gradient(ellipse at 75% 60%, #fff 40%, transparent 45%);
+}
+
+.app-shell {
+  min-height: 100dvh;
+  background:
+    var(--cloud),
+    linear-gradient(180deg, var(--simpson-sky), #b8e9ff 70%);
+}
+
+.app-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease;
+  z-index: 39;
+}
+
+.app-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#container-body {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 0;
+  max-width: 1330px;
+  margin: 0 auto;
+  padding: 10px 0 0 0;
+}
+
+
+
+.app-main {
+  background: #fff;
+  border: var(--simpson-stroke) solid var(--simpson-outline);
+  border-radius: 16px;
+  box-shadow: var(--ink-shadow);
+  padding: 16px;
+  min-height: calc(100dvh - 160px);
+}
+
+@media (max-width: 991px) {
+  #container-body {
+    grid-template-columns: 1fr;
+  }
+}
