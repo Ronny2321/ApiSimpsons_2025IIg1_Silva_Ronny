@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import ImageTitleTheSimpsons from "../../assets/ImageTitleTheSimpsons.png";
-import Simpfamily from "../../assets/Simpfamily.webp";
+import Simpfamily from "../../assets/familia.ico";
 import "./Header.css";
 
 const Header = () => {

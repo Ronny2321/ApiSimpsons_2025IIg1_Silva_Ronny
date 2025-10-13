@@ -17,7 +17,7 @@
 
 .character-image {
   width: 100%;
-  height: 200px;
+  height: 150px;
   background: linear-gradient(135deg, #fff59d, #fbc02d);
   display: flex;
   align-items: center;
@@ -32,7 +32,7 @@
   width: auto;
   object-fit: contain;
   image-rendering: -webkit-optimize-contrast;
-  filter: drop-shadow(6px 8px 0 rgba(0,0,0,0.35));
+  filter: drop-shadow(6px 8px 0 rgba(0, 0, 0, 0.35));
 }
 
 .no-image {
@@ -42,7 +42,7 @@
 }
 
 .character-content.MuiCardContent-root {
-  padding: 14px 16px 0;
+  padding: 14px 16px 5px;
 }
 
 .character-name {
@@ -69,7 +69,7 @@
 }
 
 .character-actions.MuiCardActions-root {
-  display: flex !important; 
+  display: flex !important;
   justify-content: center;
 }
 
@@ -95,7 +95,7 @@
 
 .character-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Mostrar 3 tarjetas por fila */
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   width: 100%;
   max-width: 1200px;
@@ -108,19 +108,24 @@
 
 @media (max-width: 768px) {
   .character-grid {
-    grid-template-columns: repeat(2, 1fr); /* Ajustar a 2 tarjetas por fila en pantallas pequeñas */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 480px) {
   .character-grid {
-    grid-template-columns: 1fr; /* Mostrar 1 tarjeta por fila en pantallas muy pequeñas */
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 900px) {
-  .character-image { height: 260px; }
+  .character-image {
+    height: 260px;
+  }
 }
+
 @media (max-width: 560px) {
-  .character-image { height: 240px; }
+  .character-image {
+    height: 240px;
+  }
 }
