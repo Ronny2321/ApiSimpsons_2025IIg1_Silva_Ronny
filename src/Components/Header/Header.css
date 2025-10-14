@@ -1,16 +1,29 @@
+:root {
+    /* ajusta a tu gusto (logo grande/pequeño) */
+    --header-h: clamp(110px, 16vw, 160px);
+}
+
 .site-header {
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 50;
+    left: 0;
+    right: 0;
+    height: var(--header-h);
+    z-index: 1000;
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0 10px;
+    padding: 0 20px;
     background: #7fcef0;
-    border-bottom: var(--simpson-stroke) solid var(--simpson-outline);
+    border: 2px solid var(--simpson-outline);
     box-shadow: var(--ink-shadow);
+    border-radius: 50px;
 }
+
+.site-header {
+    background-clip: padding-box;
+}
+
 
 .hamburger {
     display: inline-grid;

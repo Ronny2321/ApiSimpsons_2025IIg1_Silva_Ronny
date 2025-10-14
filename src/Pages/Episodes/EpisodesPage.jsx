@@ -12,7 +12,7 @@ const EpisodesPage = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState("");
-  const itemsPerPage = 9;
+  const itemsPerPage = 8;
 
   useEffect(() => {
     const fetchAllEpisodes = async () => {

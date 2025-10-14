@@ -5,7 +5,7 @@ import PowerModal from "../../Components/Character/CharacterModal/CharacterModal
 import "./CharactersPage.css";
 
 const BASE_URL = "https://thesimpsonsapi.com/api";
-const PAGE_SIZE = 9;
+const PAGE_SIZE = 8;
 
 const normalizeCharacter = (c, idx = 0) => {
   return {
@@ -161,7 +161,7 @@ const CharactersPage = () => {
   if (errorMsg) return <div className="error-message">{errorMsg}</div>;
 
   return (
-    <div id="charactersPage" className="character-container">
+    <div>
       <div className="character-grid">
         {characterData.map((character) => (
           <CardCharacter

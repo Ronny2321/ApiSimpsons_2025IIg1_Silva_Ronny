@@ -16,8 +16,6 @@ function App() {
       <div className="app-shell">
         <CloudReveal />
         <Header onMenuClick={() => setNavOpen(true)} />
-
-
         <div id="container-body">
           <main className="app-main" role="main">
             <Routes>
