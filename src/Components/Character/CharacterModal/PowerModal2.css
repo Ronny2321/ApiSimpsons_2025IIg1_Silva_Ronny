@@ -266,22 +266,16 @@
 }
 
 .appear-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 12px;
-}
-
-@media (max-width: 680px) {
-  .appear-grid {
-    flex-direction: column;
-  }
 }
 
 .appear-card {
   position: relative;
   display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 12px;
+  grid-template-columns: 1fr;
+  gap: 10px;
   background: #fffde7;
   border: 2px solid #000;
   border-radius: 14px;
@@ -296,6 +290,7 @@
   border-radius: 10px;
   border: 2px solid #000;
   background: #fff;
+  aspect-ratio: 16 / 9;
 }
 
 .appear-thumb img {
@@ -312,8 +307,8 @@
 .appear-title {
   margin: 0 0 6px;
   font-family: 'Luckiest Guy', cursive;
-  font-size: 1.05rem;
-  line-height: 1.05;
+  font-size: clamp(1rem, 2.8vw, 1.1rem);
+  line-height: 1.1;
   text-shadow: 2px 2px var(--simpson-yellow, #FFD90F);
 }
 
@@ -323,13 +318,14 @@
   color: #222;
   line-height: 1.45;
   overflow: hidden;
+  font-size: clamp(.9rem, 2.6vw, 1rem);
 }
 
 .appear-badge {
   position: absolute;
-  top: -10px;
-  left: -8px;
-  transform: rotate(-6deg);
+  top: 8px;
+  left: 8px;
+  transform: rotate(-3deg);
   background: var(--simpson-yellow, #FFD90F);
   border: 2px solid #000;
   border-radius: 8px;
@@ -338,6 +334,30 @@
   font-family: 'Righteous', sans-serif;
   color: #000;
   box-shadow: 0 4px 0 rgba(0, 0, 0, .25);
+  z-index: 1;
+}
+
+@media (min-width: 520px) {
+  .appear-card {
+    grid-template-columns: 120px 1fr;
+    align-items: stretch;
+  }
+
+  .appear-thumb {
+    aspect-ratio: auto;
+  }
+
+  .appear-badge {
+    top: -10px;
+    left: -8px;
+    transform: rotate(-6deg);
+  }
+}
+
+@media (min-width: 700px) {
+  .appear-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .modal-footer {
