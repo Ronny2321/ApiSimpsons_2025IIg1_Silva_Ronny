@@ -7,7 +7,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 10px;
-    background: url('https://thesimpsonsapi.com/clouds-bg.jpg') center/cover no-repeat;
+    background: #7fcef0;
     border-bottom: var(--simpson-stroke) solid var(--simpson-outline);
     box-shadow: var(--ink-shadow);
 }
@@ -126,4 +126,85 @@
     background-size: 40px 20px;
     opacity: .22;
     pointer-events: none;
+}
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    overflow: hidden;
+    position: sticky;
+}
+
+.header-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header-sky {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.cloud-header {
+    position: absolute;
+    opacity: .95;
+    filter: drop-shadow(0 4px 0 rgba(0, 0, 0, .25));
+    user-select: none;
+    pointer-events: none;
+    will-change: transform;
+    animation: headerClouds 70s linear infinite;
+}
+
+.cloud1 {
+    width: 300px;
+    top: 8%;
+    left: -25%;
+    animation-duration: 80s;
+    animation-delay: 0s;
+}
+
+.cloud2 {
+    width: 280px;
+    top: 18%;
+    left: -35%;
+    opacity: .88;
+    transform: scale(.95);
+    animation-duration: 95s;
+    animation-delay: 12s;
+}
+
+.cloud3 {
+    width: 260px;
+    top: 12%;
+    left: -20%;
+    animation-duration: 85s;
+    animation-delay: 5s;
+}
+
+.cloud4 {
+    width: 240px;
+    top: 22%;
+    left: -30%;
+    opacity: 0.9;
+    transform: scale(0.9);
+    animation-duration: 100s;
+    animation-delay: 18s;
+}
+
+@keyframes headerClouds {
+    0% {
+        transform: translateX(0) scale(1);
+    }
+
+    100% {
+        transform: translateX(160vw) scale(1.05);
+    }
 }
