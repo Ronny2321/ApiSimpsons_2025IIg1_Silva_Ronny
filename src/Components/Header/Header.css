@@ -10,7 +10,7 @@
     background: #7fcef0;
     border: 2px solid var(--simpson-outline);
     box-shadow: var(--ink-shadow);
-    border-radius: 50px;
+    border-radius: 30px;
     background-clip: padding-box;
 }
 
@@ -50,7 +50,7 @@
 
 .brand-title {
     display: block;
-    height: 150px;
+    height: 140px;
     width: auto;
     filter: drop-shadow(0 4px 0 rgba(0, 0, 0, .25));
 }
@@ -73,7 +73,7 @@
 }
 
 .brand-family {
-    height: 200px;
+    height: 165px;
     width: auto;
     display: none;
     filter: drop-shadow(0 6px 0 rgba(0, 0, 0, .25));

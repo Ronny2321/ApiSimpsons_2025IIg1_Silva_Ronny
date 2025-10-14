@@ -1,26 +1,32 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.8);
-  display: grid;
-  place-items: center;
-  padding: 20px;
-  z-index: 999;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(14px, 4vh, 44px) clamp(14px, 4vw, 44px);
+  overflow-y: auto;
+  z-index: var(--z-modal-overlay, 1200);
+  backdrop-filter: blur(2px);
 }
 
 .power-modal {
   position: relative;
-  width: min(800px, 90vw);
-  max-height: 85vh;
+  width: 100%;
+  max-width: var(--modal-max-w, 800px);
+  max-height: var(--modal-max-h, 90vh);
   background: var(--simpson-cream, #fffde7);
   border: var(--simpson-stroke, 4px) solid var(--simpson-outline, #151515);
   border-radius: 30px;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--ink-shadow-lg, 0 10px 0 rgba(0, 0, 0, .35));
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  padding: 25px;
+  overflow: hidden;
+  padding: clamp(18px, 2.2vw, 30px);
   animation: fadeIn 0.3s ease-out;
+  filter: url(#cartoon-outline);
+  z-index: var(--z-modal, 1210);
 }
 
 .close-button {
@@ -40,24 +46,30 @@
   transition: transform 0.2s ease, background 0.2s ease;
 }
 
-.close-button:hover {
-  transform: scale(1.1);
-  background: var(--simpson-hover-blue, #007bb5);
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: var(--simpson-stroke, 4px) solid var(--simpson-outline, #151515);
+  background: var(--simpson-blue, #00A2E8);
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: var(--ink-shadow, 0 6px 0 rgba(0, 0, 0, .35));
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.return-button {
-  margin-top: 20px;
-  align-self: center;
-  padding: 10px 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  color: var(--simpson-outline, #151515);
-  background: var(--simpson-yellow, #FFCC00);
-  border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.4);
-  transition: transform 0.2s ease, background 0.2s ease;
+.close-button:hover {
+  transform: translateY(-2px);
+  background: var(--simpson-yellow, #FFD90F);
+  color: #000;
 }
 
 .return-button:hover {
@@ -152,9 +164,14 @@
 
 .modal-body {
   padding: 16px 18px;
-  overflow: auto;
+  overflow-y: auto;
   display: block;
   background: #fff;
+  border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
+  border-radius: 20px;
+  box-shadow: var(--ink-shadow, 0 6px 0 rgba(0, 0, 0, .35));
+  flex-grow: 1;
+  margin-top: 18px;
 }
 
 .skeleton {

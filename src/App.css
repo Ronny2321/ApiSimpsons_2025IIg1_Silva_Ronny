@@ -21,6 +21,14 @@
   --header-h: clamp(110px, 16vw, 160px);
   --topbar-h: 0px;
   --top-stack: calc(var(--header-h) + var(--topbar-h));
+  /* Z-index scale */
+  --z-header: 300;
+  --z-modal-overlay: 1200;
+  --z-modal: 1210;
+  --z-toast: 1300;
+  /* Modal sizing tokens */
+  --modal-max-w: 800px;
+  --modal-max-h: 90vh;
 }
 
 html {
@@ -30,9 +38,6 @@ html {
 
 .app-shell {
   min-height: 100dvh;
-  background:
-    var(--cloud),
-    linear-gradient(180deg, var(--simpson-sky), #b8e9ff 70%);
 }
 
 .app-overlay {
