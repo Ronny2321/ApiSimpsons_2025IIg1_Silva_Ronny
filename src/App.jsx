@@ -1,17 +1,15 @@
 import { useState } from "react";
 import "./App.css";
-import NavBar from "./Components/NavBar/NavBar";
 import Header from "./Components/Header/Header";
 import CharactersPage from "./Pages/Characters/CharactersPage";
 import LocationsPage from "./Pages/Locations/LocationsPage";
 import EpisodesPage from "./Pages/Episodes/EpisodesPage";
 import Home from "./Pages/Home/Home";
 import CloudReveal from "./Components/Animation/CloudReveal";
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
-  const [navOpen, setNavOpen] = useState(false);
+  const [setNavOpen] = useState(false);
 
   return (
     <Router>
@@ -19,13 +17,8 @@ function App() {
         <CloudReveal />
         <Header onMenuClick={() => setNavOpen(true)} />
 
-        <div
-          className={`app-overlay ${navOpen ? "show" : ""}`}
-          onClick={() => setNavOpen(false)}
-        />
 
         <div id="container-body">
-          <NavBar isOpen={navOpen} onClose={() => setNavOpen(false)} />
           <main className="app-main" role="main">
             <Routes>
               <Route path="/" element={<Home />} />

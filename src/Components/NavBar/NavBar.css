@@ -1,88 +1,73 @@
-.app-nav {
+.top-nav {
     position: sticky;
-    top: 120px;
-    left: 0;
-    width: 290px;
-    height: calc(100dvh - 120px);
-    background: var(--simpson-yellow);
-    padding: 16px;
-    border: var(--simpson-stroke) solid var(--simpson-outline);
-    border-radius: 0 16px 16px 0;
-    box-shadow: var(--ink-shadow);
-    font-family: 'Luckiest Guy', cursive;
-    filter: url(#cartoon-outline);
-    z-index: 40;
-    overflow-y: auto;
-}
-
-
-@media (max-width: 991px) {
-    .app-nav {
-        position: fixed;
-        top: 12px;
-        bottom: 12px;
-        left: 12px;
-        width: 86vw;
-        max-width: 320px;
-        transform: translateX(-120%);
-        transition: transform .2s ease-out;
-    }
-
-    .app-nav.open {
-        transform: translateX(0);
-    }
-}
-
-.nav-close {
-    display: none;
-    position: absolute;
-    right: 12px;
-    top: 12px;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    border: var(--simpson-stroke) solid var(--simpson-outline);
-    background: #fff;
-    cursor: pointer;
+    top: 0;
+    z-index: 45;
+    background: linear-gradient(180deg, #8dd9ff 0%, #b8ecff 80%);
+    border-bottom: var(--simpson-stroke) solid var(--simpson-outline);
     box-shadow: var(--ink-shadow);
 }
 
-@media (max-width: 991px) {
-    .nav-close {
-        display: block;
-    }
-}
-
-.nav-list {
+.top-nav-list {
+    max-width: 1100px;
+    margin: 8px auto;
+    padding: 8px 22px;
     list-style: none;
-    padding: 130px 0 0;
-    margin: 0;
-    display: grid;
-    gap: 12px;
-    grid-template-rows: repeat(auto-fill, minmax(60px, 1fr));
-}
-
-.nav-link {
     display: flex;
     align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: var(--simpson-outline);
-    font-size: 1.35rem;
-    padding: 10px 12px;
-    border-radius: var(--simpson-card-radius);
-    border: var(--simpson-stroke) solid var(--simpson-outline);
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.top-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    min-width: 140px;
+
     background: #fff;
-    box-shadow: var(--ink-shadow);
+    color: #000;
+    text-decoration: none;
+    font-family: 'Righteous', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+
+    border: var(--simpson-stroke) solid var(--simpson-outline);
+    border-radius: 999px;
+    box-shadow: 0 6px 0 rgba(0, 0, 0, .35);
     transition: transform .12s ease, background .12s ease;
+    filter: url(#cartoon-outline);
 }
 
-.nav-link:hover {
+.top-link:hover {
     transform: translateY(-2px);
-    background: var(--simpson-cream);
+    background: var(--simpson-yellow);
 }
 
-.nav-link.active {
-    background: var(--simpson-blue);
-    color: #fff;
+.top-link.active {
+    background: var(--simpson-yellow);
+}
+
+.nav-cloud-rail {
+    height: 16px;
+    margin-top: 4px;
+    background:
+        url("https://thesimpsonsapi.com/clouds-bg.jpg") center / 800px 100% repeat-x;
+    opacity: .35;
+    filter: drop-shadow(0 3px 0 rgba(0, 0, 0, .25));
+    pointer-events: none;
+}
+
+@media (max-width: 560px) {
+    .top-nav-list {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        scrollbar-width: thin;
+    }
+
+    .top-nav {
+        padding-inline: 6px;
+    }
 }

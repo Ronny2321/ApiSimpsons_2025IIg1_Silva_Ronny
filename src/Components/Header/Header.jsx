@@ -5,6 +5,7 @@ import Simpfamily from "../../assets/familia.ico";
 import "./Header.css";
 import CloudLeft from "../../assets/cloud-left.png";
 import CloudRight from "../../assets/cloud-right.png";
+import NavBar from "../NavBar/NavBar";
 
 const Header = () => {
   return (
@@ -21,21 +22,7 @@ const Header = () => {
           alt="The Simpsons"
           className="brand-title"
         />
-        { <nav className="quick-tabs" aria-label="Secciones rápidas">
-        <NavLink to="/" className="qt-link">
-          Inicio
-        </NavLink>
-        <NavLink to="/characters" className="qt-link">
-          Personajes
-        </NavLink>
-        <NavLink to="/locations" className="qt-link">
-          Lugares
-        </NavLink>
-        <NavLink to="/episodes" className="qt-link">
-          Episodios
-        </NavLink>
-      </nav> }
-
+        <NavBar />
         <img src={Simpfamily} alt="Familia Simpson" className="brand-family" />
       </div>
     </header>

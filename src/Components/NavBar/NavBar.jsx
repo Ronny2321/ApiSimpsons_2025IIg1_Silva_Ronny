@@ -2,37 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./NavBar.css";
 
-const NavBar = ({ isOpen, onClose }) => {
+const NavBar = () => {
   return (
-    <nav
-      className={`app-nav ${isOpen ? "open" : ""}`}
-      aria-label="Navegación principal"
-    >
-      <button className="nav-close" aria-label="Cerrar menú" onClick={onClose}>
-        ✖
-      </button>
-
-      <ul className="nav-list">
-        <li>
-          <NavLink to="/" className="nav-link" onClick={onClose}>
-            Inicio
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/characters" className="nav-link" onClick={onClose}>
-            Personajes
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/locations" className="nav-link" onClick={onClose}>
-            Lugares
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/episodes" className="nav-link" onClick={onClose}>
-            Episodios
-          </NavLink>
-        </li>
+    <nav aria-label="Navegación principal">
+      <ul className="top-nav-list">
+        <li><NavLink to="/"          className="top-link">Inicio</NavLink></li>
+        <li><NavLink to="/characters" className="top-link">Personajes</NavLink></li>
+        <li><NavLink to="/locations"  className="top-link">Lugares</NavLink></li>
+        <li><NavLink to="/episodes"   className="top-link">Episodios</NavLink></li>
       </ul>
     </nav>
   );

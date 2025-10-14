@@ -24,11 +24,11 @@
     font-family: 'Luckiest Guy', cursive;
     font-size: 3.5rem;
     text-align: center;
-    color: #FFD90F;
-    text-shadow: 4px 4px 0 #000, 6px 6px 0 rgba(0, 0, 0, 0.2);
+    color: var(--simpson-yellow, #FFD90F);
+    text-shadow: 4px 4px 0 #FFD90F, 6px 6px 0 rgba(0, 0, 0, 0.2);
     margin-top: 20px;
     line-height: 1.2;
-    background: linear-gradient(90deg, #FFD90F, #FFB347);
+    background: linear-gradient(90deg, #000000, #000000);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
