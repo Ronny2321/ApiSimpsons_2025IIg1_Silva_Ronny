@@ -29,7 +29,7 @@ const LocationsPage = () => {
 
         setLocations(allLocations);
       } catch {
-        setError("No se pudieron cargar las locaciones. Intenta de nuevo.");
+        setError("No se pudieron cargar las lugares. Intenta de nuevo.");
       } finally {
         setLoading(false);
       }

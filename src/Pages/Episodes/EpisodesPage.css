@@ -139,7 +139,7 @@
   text-align: center;
   font-family: 'Righteous', sans-serif;
   font-size: 1.2rem;
-  color: var(--simpson-blue, #00A2E8);
+  color:#ce1610;
   background: var(--simpson-cream, #FFFDE7);
   padding: 20px;
   border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
