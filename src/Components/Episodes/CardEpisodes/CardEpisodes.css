@@ -86,6 +86,35 @@
     videoPulse 4s ease-in-out infinite alternate,
     tvFlicker 0.25s infinite,
     slightPan 12s linear infinite;
+  transition: transform .3s ease;
+}
+
+.episode-card:hover .episode-image img {
+  animation-play-state: paused;
+  transform: scale(1.05);
+}
+
+.episode-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: repeating-linear-gradient(rgba(255, 255, 255, 0.05) 0px,
+      rgba(255, 255, 255, 0.05) 2px,
+      rgba(0, 0, 0, 0.05) 3px);
+  opacity: 0.25;
+  animation: noiseMove 0.35s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes noiseMove {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(4px);
+  }
 }
 
 @keyframes tvFlicker {
@@ -140,29 +169,6 @@
   }
 }
 
-.episode-image::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background: repeating-linear-gradient(rgba(255, 255, 255, 0.05) 0px,
-      rgba(255, 255, 255, 0.05) 2px,
-      rgba(0, 0, 0, 0.05) 3px);
-  opacity: 0.25;
-  animation: noiseMove 0.35s infinite linear;
-  pointer-events: none;
-}
-
-@keyframes noiseMove {
-  0% {
-    transform: translateY(0);
-  }
-
-  100% {
-    transform: translateY(4px);
-  }
-}
-
 .episode-image::before {
   content: "";
   position: absolute;
@@ -174,7 +180,6 @@
   pointer-events: none;
 }
 
-
 .image-fallback {
   display: grid;
   place-items: center;
@@ -184,6 +189,43 @@
   font-family: 'Righteous', sans-serif;
   background: linear-gradient(135deg, #fff59d, #fbc02d);
   color: #000;
+}
+
+.video-overlay-btn {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+
+.video-overlay-btn button {
+  border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
+  border-radius: 999px;
+  background: var(--simpson-yellow, #FFD90F);
+  color: #000;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 1.3rem;
+  padding: 12px 24px;
+  box-shadow: var(--ink-shadow, 0 6px 0 rgba(0, 0, 0, .35));
+  filter: url(#cartoon-outline);
+  cursor: pointer;
+  transform: scale(0.9);
+  transition: transform .2s ease, background .2s ease, color .2s ease;
+}
+
+.video-overlay-btn button:hover {
+  transform: scale(1.05);
+  background: var(--simpson-blue, #00A2E8);
+  color: #fff;
+}
+
+.episode-card:hover .video-overlay-btn {
+  opacity: 1;
 }
 
 .ep-body {
@@ -227,10 +269,10 @@
   margin-right: 6px;
 }
 
-
 .ep-cta {
   display: flex;
   justify-content: center;
+  padding-bottom: 10px;
 }
 
 .details-button {
@@ -292,5 +334,10 @@
 
   .episode-title {
     font-size: 1.4rem;
+  }
+
+  .video-overlay-btn button {
+    font-size: 1rem;
+    padding: 10px 20px;
   }
 }

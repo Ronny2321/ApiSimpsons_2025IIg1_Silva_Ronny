@@ -2,7 +2,6 @@ import React, { useState, useMemo } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import EpisodeModal from "../EpisodeModal/EpisodeModal";
 import "./CardEpisodes.css";
 
@@ -57,6 +56,17 @@ const CardEpisodes = ({ episode }) => {
             ) : (
               <div className="image-fallback">Sin imagen</div>
             )}
+
+            <div className="video-overlay-btn">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleOpenModal();
+                }}
+              >
+                Ver sinopsis
+              </button>
+            </div>
           </div>
         </div>
 
@@ -66,7 +76,7 @@ const CardEpisodes = ({ episode }) => {
           </Typography>
 
           <div className="chip-label">
-            <strong>Fecha emisión:</strong> {airdate}{" "}
+            <strong>Fecha emisión:</strong> {airdate}
           </div>
         </CardContent>
       </Card>
