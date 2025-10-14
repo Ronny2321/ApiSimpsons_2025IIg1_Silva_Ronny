@@ -267,7 +267,7 @@
 
 .appear-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: fr;
   gap: 12px;
 }
 
@@ -356,7 +356,7 @@
 
 @media (min-width: 700px) {
   .appear-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
