@@ -77,14 +77,14 @@
   margin: 0;
   border-bottom: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
   background: linear-gradient(135deg, #fff59d, #fbc02d);
-  min-height: 200px;
+  min-height: 130px;
   display: grid;
   place-items: center;
 }
 
 .location-image {
   width: 100%;
-  height: 220px;
+  height: 140px;
   object-fit: cover;
   display: block;
   animation: location-zoom 4s ease-in-out infinite;
@@ -94,7 +94,7 @@
   display: grid;
   place-items: center;
   width: 100%;
-  height: 220px;
+  height: 140px;
   background: linear-gradient(135deg, #fff59d, #fbc02d);
   font-weight: 900;
   font-family: 'Righteous', sans-serif;
@@ -103,12 +103,13 @@
 
 .location-body {
   background: var(--simpson-cream, #FFFDE7);
-  padding: 12px 14px 16px;
+  padding: 10px 12px;
+  /* compactar móvil */
 }
 
 .location-title {
-  margin: 8px 0 10px;
-  font-size: 1.4rem;
+  margin: 6px 0 8px;
+  font-size: 1.15rem;
   text-align: center;
   color: #000;
   text-shadow: 2px 2px var(--simpson-yellow, #FFD90F);
@@ -116,6 +117,11 @@
   line-height: 1.05;
   filter: url(#cartoon-outline);
   word-break: break-word;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .location-meta {
@@ -157,8 +163,8 @@
   background: var(--simpson-yellow, #FFD90F);
   color: #000;
   font-family: 'Luckiest Guy', cursive;
-  font-size: 1.15rem;
-  padding: 10px 22px;
+  font-size: 1rem;
+  padding: 8px 16px;
   box-shadow: var(--ink-shadow, 0 6px 0 rgba(0, 0, 0, .35));
   filter: url(#cartoon-outline);
   cursor: pointer;
@@ -283,17 +289,42 @@
   }
 }
 
-@media (max-width: 560px) {
-  .loc-badge {
-    max-width: 70%;
+/* Escalado progresivo (mobile-first) */
+@media (min-width: 560px) {
+  .location-figure {
+    min-height: 150px;
   }
 
   .location-image,
   .image-fallback {
-    height: 200px;
+    height: 160px;
   }
 
-  .location-meta {
-    grid-template-columns: 1fr;
+  .location-title {
+    font-size: 1.3rem;
+  }
+
+  .loc-badge {
+    max-width: 70%;
+  }
+}
+
+@media (min-width: 768px) {
+  .location-figure {
+    min-height: 170px;
+  }
+
+  .location-image,
+  .image-fallback {
+    height: 180px;
+  }
+
+  .location-title {
+    font-size: 1.5rem;
+  }
+
+  .loc-overlay-cta {
+    font-size: 1.15rem;
+    padding: 10px 22px;
   }
 }

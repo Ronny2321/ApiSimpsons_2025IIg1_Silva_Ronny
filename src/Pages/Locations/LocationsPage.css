@@ -1,12 +1,28 @@
 .locations-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr; /* mobile-first */
     gap: 16px;
-    padding: 16px;
-    background: linear-gradient(180deg, #fffde7, #ffeb3b 90%);
-    border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
-    border-radius: 20px;
-    padding: 30px;
+    padding: 8px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 0 rgba(0, 0, 0, 0.35);
+}
+
+@media (min-width: 480px) {
+    .locations-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (min-width: 992px) {
+    .locations-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+    }
 }
 
 .loading-container {
