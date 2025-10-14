@@ -158,7 +158,7 @@ const CharactersPage = () => {
   };
 
   return (
-    <div id="charactersPage">
+    <div id="charactersPage" className="character-container">
       {loading ? (
         <CircularProgress />
       ) : errorMsg ? (

@@ -4,8 +4,17 @@
     --simpson-outline: #000;
     --simpson-stroke: 4px;
     --simpson-card-radius: 12px;
-    --ink-shadow: 0 10px 0 rgba(0, 0, 0, 0.35);
-    --ink-shadow-lg: 0 14px 0 rgba(0, 0, 0, 0.45);
+}
+
+.character-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 16px;
+    background: linear-gradient(180deg, #fffde7, #ffeb3b 90%);
+    border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
+    border-radius: 20px;
+    padding: 30px;
 }
 
 #charactersPage {
@@ -27,7 +36,6 @@
     padding: 0;
     background: #ffffff;
     border-radius: var(--simpson-card-radius);
-    box-shadow: var(--ink-shadow);
 }
 
 .pagination-controls {

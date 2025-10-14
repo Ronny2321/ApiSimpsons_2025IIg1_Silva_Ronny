@@ -3,6 +3,10 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     padding: 16px;
+    background: linear-gradient(180deg, #fffde7, #ffeb3b 90%);
+    border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
+    border-radius: 20px;
+    padding: 30px;
 }
 
 .loading-container {
