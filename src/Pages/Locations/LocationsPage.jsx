@@ -58,8 +58,11 @@ const LocationsPage = () => {
   };
 
   if (loading)
-    return <div className="loading-container">Cargando locaciones...</div>;
-  if (error) return <div className="error-container">{error}</div>;
+    return (
+      <div className="loading-message">Cargando lugares...</div>
+    );
+  if (error)
+    return <div className="error-message">{error}</div>;
 
   return (
     <div>

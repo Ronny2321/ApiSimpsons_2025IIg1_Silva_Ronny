@@ -157,39 +157,38 @@ const CharactersPage = () => {
     setSelectedCharacter(null);
   };
 
+  if (loading)
+    return (
+      <div className="loading-message">Cargando personajes...</div>
+    );
+  if (errorMsg)
+    return <div className="error-message">{errorMsg}</div>;
+
   return (
     <div id="charactersPage" className="character-container">
-      {loading ? (
-        <CircularProgress />
-      ) : errorMsg ? (
-        <div className="error-message">{errorMsg}</div>
-      ) : (
-        <>
-          <div className="character-grid">
-            {characterData.map((character) => (
-              <CardCharacter
-                key={character.id}
-                user={character}
-                onShowPower={handleShowPower}
-              />
-            ))}
-          </div>
-          <div className="pagination-controls">
-            <button onClick={handlePrevPage} disabled={currentPage === 1}>
-              Anterior
-            </button>
-            <span>
-              Página {currentPage} de {totalPages}
-            </span>
-            <button
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-            >
-              Siguiente
-            </button>
-          </div>
-        </>
-      )}
+      <div className="character-grid">
+        {characterData.map((character) => (
+          <CardCharacter
+            key={character.id}
+            user={character}
+            onShowPower={handleShowPower}
+          />
+        ))}
+      </div>
+      <div className="pagination-controls">
+        <button onClick={handlePrevPage} disabled={currentPage === 1}>
+          Anterior
+        </button>
+        <span>
+          Página {currentPage} de {totalPages}
+        </span>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+        >
+          Siguiente
+        </button>
+      </div>
 
       <PowerModal
         character={selectedCharacter}

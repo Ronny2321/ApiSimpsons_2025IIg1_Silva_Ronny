@@ -133,3 +133,18 @@
     font-size: 1.2rem;
     color: var(--simpson-outline);
 }
+
+.loading-message,
+.error-message {
+  text-align: center;
+  font-family: 'Righteous', sans-serif;
+  font-size: 1.2rem;
+  color: var(--simpson-blue, #00A2E8);
+  background: var(--simpson-cream, #FFFDE7);
+  padding: 20px;
+  border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
+  border-radius: 12px;
+  box-shadow: var(--ink-shadow, 0 6px 0 rgba(0, 0, 0, .35));
+  margin: 20px auto;
+  max-width: 600px;
+}
