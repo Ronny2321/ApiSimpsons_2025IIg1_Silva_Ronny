@@ -21,14 +21,17 @@
   --header-h: clamp(110px, 16vw, 160px);
   --topbar-h: 0px;
   --top-stack: calc(var(--header-h) + var(--topbar-h));
-  /* Z-index scale */
   --z-header: 300;
   --z-modal-overlay: 1200;
   --z-modal: 1210;
   --z-toast: 1300;
-  /* Modal sizing tokens */
   --modal-max-w: 800px;
   --modal-max-h: 90vh;
+  --header-h: 88px;
+  --topnav-h: 56px;
+  --fz-h1: 2rem;
+  --fz-h2: 1.2rem;
+  --gap: 12px;
 }
 
 html {
@@ -73,8 +76,22 @@ html {
   min-height: calc(100dvh - var(--header-h) - 40px);
 }
 
-@media (max-width: 991px) {
-  #container-body {
-    grid-template-columns: 1fr;
+@media (min-width:768px) {
+  :root {
+    --header-h: 110px;
+    --topnav-h: 60px;
+    --fz-h1: 2.4rem;
+    --fz-h2: 1.35rem;
+    --gap: 14px;
+  }
+}
+
+@media (min-width:992px) {
+  :root {
+    --header-h: 140px;
+    --topnav-h: 64px;
+    --fz-h1: 3rem;
+    --fz-h2: 1.6rem;
+    --gap: 16px;
   }
 }

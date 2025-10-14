@@ -219,9 +219,7 @@ const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
           )}
         </main>
 
-        <button className="return-button" onClick={onClose} aria-label="Volver">
-          Volver
-        </button>
+        
       </dialog>
     </div>
   );

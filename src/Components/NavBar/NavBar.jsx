@@ -4,9 +4,9 @@ import "./NavBar.css";
 
 const NavBar = () => {
   return (
-    <nav aria-label="Navegación principal">
+    <nav className="top-nav" aria-label="Navegación principal">
       <ul className="top-nav-list">
-        <li><NavLink to="/"          className="top-link">Inicio</NavLink></li>
+        <li><NavLink to="/"           className="top-link">Inicio</NavLink></li>
         <li><NavLink to="/characters" className="top-link">Personajes</NavLink></li>
         <li><NavLink to="/locations"  className="top-link">Lugares</NavLink></li>
         <li><NavLink to="/episodes"   className="top-link">Episodios</NavLink></li>
@@ -14,5 +14,4 @@ const NavBar = () => {
     </nav>
   );
 };
-
 export default NavBar;

@@ -1,19 +1,30 @@
 .site-header {
     position: sticky;
     top: 0;
-    height: var(--header-h);
     z-index: 1000;
+    height: var(--header-h);
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
+    justify-content: center;
+    padding: 6px 10px;
     background: #7fcef0;
     border: 2px solid var(--simpson-outline);
+    border-radius: 18px;
     box-shadow: var(--ink-shadow);
-    border-radius: 30px;
     background-clip: padding-box;
+    overflow: hidden;
 }
 
+.header-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1280px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 8px;
+}
 
 .hamburger {
     display: inline-grid;
@@ -49,10 +60,16 @@
 }
 
 .brand-title {
-    display: block;
-    height: 140px;
+    height: 46px;
     width: auto;
     filter: drop-shadow(0 4px 0 rgba(0, 0, 0, .25));
+}
+
+.brand-family {
+    display: none;
+    height: 120px;
+    width: auto;
+    filter: drop-shadow(0 6px 0 rgba(0, 0, 0, .25));
 }
 
 .brand-tag {
@@ -66,24 +83,19 @@
     box-shadow: var(--ink-shadow);
 }
 
-@media (max-width:560px) {
-    .brand-tag {
-        display: none;
-    }
-}
-
-.brand-family {
-    height: 165px;
-    width: auto;
-    display: none;
-    filter: drop-shadow(0 6px 0 rgba(0, 0, 0, .25));
-}
-
-@media (min-width: 768px) {
+@media (min-width:768px) {
     .brand-family {
         display: block;
+        height: 160px;
     }
 }
+
+@media (min-width:992px) {
+    .brand-family {
+        height: 200px;
+    }
+}
+
 
 .quick-tabs {
     flex-grow: 1;
@@ -131,7 +143,6 @@
     pointer-events: none;
 }
 
-/* Se elimina position: sticky duplicado para evitar comportamiento inconsistente con la compensación de scroll */
 .site-header {
     overflow: hidden;
 }
@@ -157,46 +168,79 @@
     position: absolute;
     opacity: .95;
     filter: drop-shadow(0 4px 0 rgba(0, 0, 0, .25));
+    animation: headerClouds 70s linear infinite;
     user-select: none;
     pointer-events: none;
-    will-change: transform;
-    animation: headerClouds 70s linear infinite;
 }
 
 .cloud1 {
-    width: 300px;
-    top: 8%;
-    left: -25%;
+    width: 180px;
+    top: 12%;
+    left: -30%;
     animation-duration: 80s;
-    animation-delay: 0s;
 }
 
 .cloud2 {
-    width: 280px;
-    top: 18%;
-    left: -35%;
-    opacity: .88;
-    transform: scale(.95);
-    animation-duration: 95s;
-    animation-delay: 12s;
+    width: 170px;
+    top: 24%;
+    left: -38%;
+    animation-duration: 92s;
+    animation-delay: 10s;
+    opacity: .9;
 }
 
 .cloud3 {
-    width: 260px;
-    top: 12%;
-    left: -20%;
-    animation-duration: 85s;
-    animation-delay: 5s;
+    display: none;
 }
 
 .cloud4 {
-    width: 240px;
-    top: 22%;
-    left: -30%;
-    opacity: 0.9;
-    transform: scale(0.9);
-    animation-duration: 100s;
-    animation-delay: 18s;
+    display: none;
+}
+
+@media (min-width:768px) {
+    .cloud1 {
+        width: 240px;
+        top: 10%;
+        left: -25%;
+    }
+
+    .cloud2 {
+        width: 220px;
+        top: 20%;
+        left: -35%;
+    }
+
+    .cloud3 {
+        display: block;
+        width: 220px;
+        top: 14%;
+        left: -20%;
+        animation-duration: 85s;
+        animation-delay: 5s;
+    }
+}
+
+@media (min-width:992px) {
+    .cloud1 {
+        width: 300px;
+    }
+
+    .cloud2 {
+        width: 280px;
+    }
+
+    .cloud3 {
+        width: 260px;
+    }
+
+    .cloud4 {
+        display: block;
+        width: 240px;
+        top: 22%;
+        left: -30%;
+        animation-duration: 100s;
+        animation-delay: 18s;
+    }
 }
 
 @keyframes headerClouds {
