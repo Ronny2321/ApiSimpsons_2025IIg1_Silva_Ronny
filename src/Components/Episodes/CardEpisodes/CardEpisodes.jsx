@@ -12,7 +12,7 @@ const CardEpisodes = ({ episode }) => {
   const handleCloseModal = () => setModalOpen(false);
 
   const airdate = useMemo(() => {
-    return episode?.airdate ? episode.airdate : "Fecha desconocida";
+    return episode?.airdate ? episode.airdate : "0000-00-00";
   }, [episode?.airdate]);
 
   const code = useMemo(() => {
@@ -65,19 +65,8 @@ const CardEpisodes = ({ episode }) => {
             {episode?.name || "Episodio"}
           </Typography>
 
-          <div className="date"><strong>Fecha emisión:</strong> {airdate} </div>
-
-          <div className="ep-cta">
-            <Button
-              size="small"
-              className="details-button"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleOpenModal();
-              }}
-            >
-              Ver detalles
-            </Button>
+          <div className="chip-label">
+            <strong>Fecha emisión:</strong> {airdate}{" "}
           </div>
         </CardContent>
       </Card>
