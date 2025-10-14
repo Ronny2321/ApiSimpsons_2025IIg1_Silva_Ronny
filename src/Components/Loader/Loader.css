@@ -5,6 +5,8 @@
     justify-content: center;
     height: 100%;
     text-align: center;
+    background: url('https://thesimpsonsapi.com/clouds-bg.jpg') center/cover no-repeat;
+
 }
 
 .spinner {
