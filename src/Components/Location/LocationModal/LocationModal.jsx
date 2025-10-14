@@ -49,8 +49,8 @@ const LocationModal = ({ isOpen, onClose, locationId }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <button className="modal-close" onClick={onClose}>
-          &times;
+        <button className="close-button" onClick={onClose} aria-label="Cerrar">
+          ✖
         </button>
         {loading ? (
           <p>Cargando información...</p>
