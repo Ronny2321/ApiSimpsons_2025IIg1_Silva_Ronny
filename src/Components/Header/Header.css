@@ -7,10 +7,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 10px;
-    background:
-        radial-gradient(100% 60% at 10% 0%, rgba(255, 255, 255, .5), transparent 60%),
-        var(--cloud),
-        linear-gradient(180deg, var(--simpson-sky), #b8e9ff);
+    background: url('https://thesimpsonsapi.com/clouds-bg.jpg') center/cover no-repeat;
     border-bottom: var(--simpson-stroke) solid var(--simpson-outline);
     box-shadow: var(--ink-shadow);
 }

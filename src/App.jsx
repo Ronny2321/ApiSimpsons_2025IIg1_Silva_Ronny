@@ -2,7 +2,6 @@ import { useState } from "react";
 import "./App.css";
 import NavBar from "./Components/NavBar/NavBar";
 import Header from "./Components/Header/Header";
-
 import CharactersPage from "./Pages/Characters/CharactersPage";
 import LocationsPage from "./Pages/Locations/LocationsPage";
 import EpisodesPage from "./Pages/Episodes/EpisodesPage";

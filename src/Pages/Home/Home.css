@@ -3,9 +3,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background:
-        var(--cloud),
-        linear-gradient(180deg, var(--simpson-sky, #87CEEB) 0%, #b8e9ff 70%);
+    background: url('https://thesimpsonsapi.com/clouds-bg.jpg') center/cover no-repeat;
     min-height: 100vh;
     padding: 40px 20px;
 }

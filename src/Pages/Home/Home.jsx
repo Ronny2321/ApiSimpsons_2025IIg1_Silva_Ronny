@@ -47,8 +47,13 @@ const Home = () => {
 
       <footer className="home-footer">
         <p>
-          Hecho con amor por <strong>Ronny Silva</strong>
-          <p>Los Simpson API ©</p>
+          Hecho con amor por
+          <br />
+          <br />
+          <strong>Ronny Silva Correa</strong>
+          <br />
+          <br />
+          2025 ©
         </p>
       </footer>
     </main>
