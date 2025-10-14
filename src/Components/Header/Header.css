@@ -1,5 +1,4 @@
 :root {
-    /* ajusta a tu gusto (logo grande/pequeño) */
     --header-h: clamp(110px, 16vw, 160px);
 }
 

@@ -19,9 +19,7 @@
     radial-gradient(ellipse at 55% 40%, #fff 45%, transparent 48%),
     radial-gradient(ellipse at 75% 60%, #fff 40%, transparent 45%);
   --header-h: 170px;
-  /* alto aproximado de tu header */
   --topbar-h: 70px;
-  /* alto aproximado del NavBar superior */
   --top-stack: calc(var(--header-h) + var(--topbar-h));
 }
 
