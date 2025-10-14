@@ -14,6 +14,9 @@ const Header = () => {
       />
 
       <nav className="quick-tabs" aria-label="Secciones rápidas">
+        <NavLink to="/" className="qt-link">
+          Inicio
+        </NavLink>
         <NavLink to="/characters" className="qt-link">
           Personajes
         </NavLink>

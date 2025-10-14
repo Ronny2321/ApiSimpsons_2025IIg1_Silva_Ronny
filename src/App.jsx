@@ -6,6 +6,7 @@ import Header from "./Components/Header/Header";
 import CharactersPage from "./Pages/Characters/CharactersPage";
 import LocationsPage from "./Pages/Locations/LocationsPage";
 import EpisodesPage from "./Pages/Episodes/EpisodesPage";
+import Home from "./Pages/Home/Home";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -26,6 +27,7 @@ function App() {
           <NavBar isOpen={navOpen} onClose={() => setNavOpen(false)} />
           <main className="app-main" role="main">
             <Routes>
+              <Route path="/" element={<Home />} />
               <Route path="/characters" element={<CharactersPage />} />
               <Route path="/locations" element={<LocationsPage />} />
               <Route path="/episodes" element={<EpisodesPage />} />

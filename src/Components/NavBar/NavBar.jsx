@@ -14,6 +14,11 @@ const NavBar = ({ isOpen, onClose }) => {
 
       <ul className="nav-list">
         <li>
+          <NavLink to="/" className="nav-link" onClick={onClose}>
+            Inicio
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="/characters" className="nav-link" onClick={onClose}>
             Personajes
           </NavLink>

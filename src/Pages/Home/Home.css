@@ -1,0 +1,126 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background:
+        var(--cloud),
+        linear-gradient(180deg, var(--simpson-sky, #87CEEB) 0%, #b8e9ff 70%);
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.home-hero {
+    margin-bottom: 40px;
+    animation: fadeInDown 0.8s ease;
+}
+
+.home-logo {
+    width: clamp(200px, 40vw, 380px);
+    filter: drop-shadow(0 4px 0 rgba(0, 0, 0, 0.35));
+}
+
+.home-title {
+    font-family: 'Luckiest Guy', cursive;
+    color: #000;
+    font-size: 2.6rem;
+    margin-top: 10px;
+    text-shadow: 3px 3px var(--simpson-yellow, #FFD90F);
+}
+
+.home-subtitle {
+    font-family: 'Righteous', sans-serif;
+    font-size: 1.1rem;
+    max-width: 700px;
+    color: #111;
+    margin: 10px auto 0;
+    line-height: 1.5;
+    background: rgba(255, 255, 255, 0.6);
+    border: var(--simpson-stroke) solid var(--simpson-outline);
+    border-radius: 14px;
+    padding: 10px 16px;
+    box-shadow: var(--ink-shadow);
+}
+
+.home-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 40px;
+}
+
+.home-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--simpson-cream, #FFFDE7);
+    border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
+    border-radius: var(--simpson-card-radius, 16px);
+    padding: 24px 20px;
+    text-decoration: none;
+    color: #000;
+    box-shadow: var(--ink-shadow);
+    filter: url(#cartoon-outline);
+    transition: transform 0.2s ease, background 0.2s ease;
+    cursor: pointer;
+}
+
+.home-card:hover {
+    background: var(--simpson-yellow, #FFD90F);
+    transform: translateY(-8px) rotate(-2deg);
+    box-shadow: var(--ink-shadow-lg);
+}
+
+.home-card h2 {
+    font-family: 'Luckiest Guy', cursive;
+    margin-top: 10px;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px var(--simpson-yellow, #FFD90F);
+}
+
+.home-card p {
+    font-family: 'Righteous', sans-serif;
+    font-size: 0.95rem;
+    color: #222;
+    margin-top: 8px;
+    line-height: 1.45;
+}
+
+.card-emoji {
+    font-size: 3rem;
+    margin-bottom: 6px;
+    transform: rotate(-5deg);
+}
+
+.home-footer {
+    margin-top: 60px;
+    font-family: 'Righteous', sans-serif;
+    font-size: 0.95rem;
+    color: #000;
+    text-shadow: 1px 1px var(--simpson-yellow);
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    .home-subtitle {
+        font-size: 1rem;
+        padding: 8px 12px;
+    }
+
+    .home-title {
+        font-size: 2.1rem;
+    }
+}
