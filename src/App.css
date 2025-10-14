@@ -18,10 +18,15 @@
     radial-gradient(ellipse at 30% 30%, #fff 55%, transparent 58%),
     radial-gradient(ellipse at 55% 40%, #fff 45%, transparent 48%),
     radial-gradient(ellipse at 75% 60%, #fff 40%, transparent 45%);
-  --header-h: 170px;
-  --topbar-h: 70px;
+  --header-h: clamp(110px, 16vw, 160px);
+  --topbar-h: 0px;
   --top-stack: calc(var(--header-h) + var(--topbar-h));
 }
+
+html {
+  scroll-padding-top: var(--header-h);
+}
+
 
 .app-shell {
   min-height: 100dvh;
@@ -60,7 +65,7 @@
   border-radius: 16px;
   box-shadow: var(--ink-shadow);
   padding: 16px;
-  min-height: calc(100dvh - 160px);
+  min-height: calc(100dvh - var(--header-h) - 40px);
 }
 
 @media (max-width: 991px) {

@@ -1,12 +1,6 @@
-:root {
-    --header-h: clamp(110px, 16vw, 160px);
-}
-
 .site-header {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
     height: var(--header-h);
     z-index: 1000;
     display: flex;
@@ -17,9 +11,6 @@
     border: 2px solid var(--simpson-outline);
     box-shadow: var(--ink-shadow);
     border-radius: 50px;
-}
-
-.site-header {
     background-clip: padding-box;
 }
 
@@ -140,12 +131,9 @@
     pointer-events: none;
 }
 
+/* Se elimina position: sticky duplicado para evitar comportamiento inconsistente con la compensación de scroll */
 .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
     overflow: hidden;
-    position: sticky;
 }
 
 .header-inner {
