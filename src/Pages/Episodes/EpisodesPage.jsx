@@ -48,6 +48,10 @@ const EpisodesPage = () => {
     fetchAllEpisodes();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
+
   const handleSeasonChange = (event) => {
     const season = event.target.value;
     setSelectedSeason(season);

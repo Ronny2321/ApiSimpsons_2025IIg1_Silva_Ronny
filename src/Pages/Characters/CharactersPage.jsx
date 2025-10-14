@@ -131,6 +131,10 @@ const CharactersPage = () => {
     fetchCharacters(currentPage);
   }, [currentPage, fetchCharacters]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
+
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage((prevPage) => prevPage + 1);

@@ -37,6 +37,10 @@ const LocationsPage = () => {
     fetchLocations();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
+
   const totalPages = Math.ceil(locations.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentItems = locations.slice(startIndex, startIndex + itemsPerPage);

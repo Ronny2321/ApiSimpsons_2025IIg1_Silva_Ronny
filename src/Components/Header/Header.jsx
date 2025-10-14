@@ -13,7 +13,7 @@ const Header = () => {
         className="brand-title"
       />
 
-      <nav className="quick-tabs" aria-label="Secciones rápidas">
+      {/* <nav className="quick-tabs" aria-label="Secciones rápidas">
         <NavLink to="/" className="qt-link">
           Inicio
         </NavLink>
@@ -26,7 +26,7 @@ const Header = () => {
         <NavLink to="/episodes" className="qt-link">
           Episodios
         </NavLink>
-      </nav>
+      </nav> */}
 
       <img src={Simpfamily} alt="Familia Simpson" className="brand-family" />
     </header>
