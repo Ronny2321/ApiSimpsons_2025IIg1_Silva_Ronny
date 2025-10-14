@@ -78,7 +78,7 @@
 }
 
 .modal-header {
-  background-color: var(--simpson-blue, #00A2E8);
+  background: url('https://thesimpsonsapi.com/clouds-bg.jpg') center/cover no-repeat;
   padding: 2px;
   border-radius: 20px;
   display: flex;
