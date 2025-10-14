@@ -16,7 +16,9 @@
 .home-logo {
     width: clamp(200px, 40vw, 380px);
     filter: drop-shadow(0 4px 0 rgba(0, 0, 0, 0.35));
+    animation: float 3s ease-in-out infinite, move-cloud 5s linear infinite;
 }
+
 
 .home-title {
     font-family: 'Luckiest Guy', cursive;
@@ -61,14 +63,14 @@
     color: #000;
     box-shadow: var(--ink-shadow);
     filter: url(#cartoon-outline);
-    transition: transform 0.2s ease, background 0.2s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
 }
 
 .home-card:hover {
     background: var(--simpson-yellow, #FFD90F);
-    transform: translateY(-8px) rotate(-2deg);
-    box-shadow: var(--ink-shadow-lg);
+    transform: scale(1.05) translateY(-8px) rotate(-2deg);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .home-card h2 {
@@ -120,5 +122,31 @@
 
     .home-title {
         font-size: 2.1rem;
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes move-cloud {
+    0% {
+        transform: translateX(-20px);
+    }
+
+    50% {
+        transform: translateX(20px);
+    }
+
+    100% {
+        transform: translateX(-20px);
     }
 }
