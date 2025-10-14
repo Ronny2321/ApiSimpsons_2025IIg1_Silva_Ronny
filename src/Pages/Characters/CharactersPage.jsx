@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import CardCharacter from "../../Components/Character/CardCharacter/CardCharacter";
-import CircularProgress from "@mui/material/CircularProgress";
+import Loader from "../../Components/Loader/Loader";
 import PowerModal from "../../Components/Character/CharacterModal/CharacterModal";
 import "./CharactersPage.css";
 
@@ -157,12 +157,8 @@ const CharactersPage = () => {
     setSelectedCharacter(null);
   };
 
-  if (loading)
-    return (
-      <div className="loading-message">Cargando personajes...</div>
-    );
-  if (errorMsg)
-    return <div className="error-message">{errorMsg}</div>;
+  if (loading) return <Loader message="Cargando personajes..." />;
+  if (errorMsg) return <div className="error-message">{errorMsg}</div>;
 
   return (
     <div id="charactersPage" className="character-container">
@@ -182,10 +178,7 @@ const CharactersPage = () => {
         <span>
           Página {currentPage} de {totalPages}
         </span>
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-        >
+        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
           Siguiente
         </button>
       </div>

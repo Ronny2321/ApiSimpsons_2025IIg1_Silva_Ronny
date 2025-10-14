@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CardLocation from "../../Components/Location/CardLocation/CardLocation";
+import Loader from "../../Components/Loader/Loader";
 import "./LocationsPage.css";
 
 const LocationsPage = () => {
@@ -57,12 +58,8 @@ const LocationsPage = () => {
     }
   };
 
-  if (loading)
-    return (
-      <div className="loading-message">Cargando lugares...</div>
-    );
-  if (error)
-    return <div className="error-message">{error}</div>;
+  if (loading) return <Loader message="Cargando lugares..." />;
+  if (error) return <div className="error-message">{error}</div>;
 
   return (
     <div>

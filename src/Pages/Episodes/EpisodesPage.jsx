@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CardEpisodes from "../../Components/Episodes/CardEpisodes/CardEpisodes";
+import Loader from "../../Components/Loader/Loader";
 import "./EpisodesPage.css";
 
 const EpisodesPage = () => {
@@ -84,12 +85,8 @@ const EpisodesPage = () => {
     startIndex + itemsPerPage
   );
 
-  if (loading)
-    return (
-      <div className="loading-message">Cargando episodios...</div>
-    );
-  if (error)
-    return <div className="error-message">{error}</div>;
+  if (loading) return <Loader message="Cargando episodios..." />;
+  if (error) return <div className="error-message">{error}</div>;
 
   return (
     <div className="episodes-container">
