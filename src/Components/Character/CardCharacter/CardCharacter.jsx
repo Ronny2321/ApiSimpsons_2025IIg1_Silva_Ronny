@@ -8,9 +8,7 @@ import "./CardCharacter.css";
 const CardCharacter = ({ user }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
+  const toggleModal = () => setIsModalOpen((v) => !v);
 
   if (!user) {
     return (
@@ -36,6 +34,7 @@ const CardCharacter = ({ user }) => {
         onClick={toggleModal}
         role="button"
         tabIndex={0}
+        onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && toggleModal()}
       >
         <div className="character-image">
           {user.image ? (
@@ -44,14 +43,27 @@ const CardCharacter = ({ user }) => {
               alt={user.name}
               loading="lazy"
               onError={(e) => {
-                e.target.style.display = "none";
-                e.target.parentElement.innerHTML =
-                  '<div style="display:flex;align-items:center;justify-content:center;height:100%;background:linear-gradient(135deg,#f4d03f,#f39c12);color:#000;font-weight:bold;font-size:1.1rem;">Sin imagen</div>';
+                e.currentTarget.style.display = "none";
+                e.currentTarget.parentElement.innerHTML =
+                  '<div class="image-fallback">Sin imagen</div>';
               }}
             />
           ) : (
             <div className="no-image">Sin imagen</div>
           )}
+
+          <div className="char-overlay-btn" aria-hidden="true">
+            <button
+              className="char-overlay-cta"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleModal();
+              }}
+              aria-label={`Ver info de ${user.name || "personaje"}`}
+            >
+              Ver más...
+            </button>
+          </div>
         </div>
 
         <CardContent className="character-content">
@@ -63,6 +75,7 @@ const CardCharacter = ({ user }) => {
           >
             {user.name || "Nombre desconocido"}
           </Typography>
+
           <div
             className={`character-status ${
               user.status?.toLowerCase() !== "alive" ? "red" : ""
@@ -70,16 +83,18 @@ const CardCharacter = ({ user }) => {
           >
             <span>{user.status || "Desconocido"}</span>
           </div>
+
           <div
             className="chip chip-birth"
-            title={user.birthdate || "0000-00-00"}
+            title={user.birthdate || "Desconocida"}
           >
             <span className="chip-label">Nacimiento:</span>
             <span className="chip-value">
-              {user.birthdate || "0000-00-00"}
+              {user.birthdate || "Desconocida"}
             </span>
           </div>
         </CardContent>
+
         <div
           className={`character-gender ${
             user.gender?.toLowerCase() === "male"
@@ -91,6 +106,7 @@ const CardCharacter = ({ user }) => {
         >
           <span>{user.gender || "No especificado"}</span>
         </div>
+
         <div
           className={`character-age ${
             user.age && user.age > 0 && user.age <= 10

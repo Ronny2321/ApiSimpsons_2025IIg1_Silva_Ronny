@@ -40,9 +40,12 @@
 }
 
 @keyframes character-alive {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-5px);
   }
@@ -75,6 +78,77 @@
   filter: url(#cartoon-outline);
   word-break: break-word;
 }
+
+.character-card:hover .character-image img {
+  animation-play-state: paused;
+  transform: scale(1.03);
+  transition: transform .2s ease;
+}
+
+.char-overlay-btn {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, .25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .22s ease;
+}
+
+.character-card:hover .char-overlay-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.char-overlay-cta {
+  border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
+  border-radius: 999px;
+  background: var(--simpson-yellow, #FFD90F);
+  color: #000;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 1.15rem;
+  padding: 10px 20px;
+  box-shadow: var(--ink-shadow, 0 6px 0 rgba(0, 0, 0, .35));
+  filter: url(#cartoon-outline);
+  cursor: pointer;
+  transform: scale(.92);
+  animation: ctaPop .22s ease-out both;
+  transition: transform .16s ease, background .16s ease, color .16s ease;
+}
+
+@keyframes ctaPop {
+  0% {
+    transform: scale(.86);
+    opacity: .0;
+  }
+
+  60% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(.92);
+  }
+}
+
+.char-overlay-cta:hover {
+  transform: scale(1.05) translateY(-1px);
+  background: var(--simpson-blue, #00A2E8);
+  color: #fff;
+}
+
+.char-overlay-cta:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px #fff,
+    0 0 0 6px var(--simpson-blue, #00A2E8),
+    var(--ink-shadow, 0 6px 0 rgba(0, 0, 0, .35));
+}
+
 
 .character-meta {
   display: flex;
