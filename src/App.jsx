@@ -12,7 +12,7 @@ function App() {
   const [setNavOpen] = useState(false);
 
   return (
-    <Router>
+  <Router basename={import.meta.env.BASE_URL}>
       <div className="app-shell">
         <CloudReveal />
   <Header onMenuClick={() => setNavOpen(true)} />
