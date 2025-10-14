@@ -22,10 +22,17 @@
 
 .home-title {
     font-family: 'Luckiest Guy', cursive;
-    color: #000;
-    font-size: 2.6rem;
-    margin-top: 10px;
-    text-shadow: 3px 3px var(--simpson-yellow, #FFD90F);
+    font-size: 3.5rem;
+    text-align: center;
+    color: #FFD90F;
+    text-shadow: 4px 4px 0 #000, 6px 6px 0 rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    line-height: 1.2;
+    background: linear-gradient(90deg, #FFD90F, #FFB347);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: bounce 2s infinite ease-in-out;
 }
 
 .home-subtitle {
@@ -148,5 +155,17 @@
 
     100% {
         transform: translateX(-20px);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
     }
 }

@@ -7,11 +7,8 @@ const Home = () => {
   return (
     <main className="home-container">
       <section className="home-hero">
-        <img
-          src={ImageTitleTheSimpsons}
-          alt="Los Simpson Logo"
-          className="home-logo"
-        />
+        <h1 className="home-title">BIENVEN!DOH!</h1>
+
         <p className="home-subtitle">
           ¡Explora el universo de Springfield! Conoce a tus personajes
           favoritos, sus lugares y cada episodio de esta icónica serie.
