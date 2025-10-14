@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Righteous:wght@400;700&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -36,6 +38,39 @@
 
 html {
   scroll-padding-top: var(--header-h);
+}
+
+body,
+html,
+#root {
+  font-family: 'Righteous', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.title,
+.heading {
+  font-family: 'Luckiest Guy', cursive;
+}
+
+.MuiTypography-root {
+  font-family: 'Righteous', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
+}
+
+.MuiTypography-h1,
+.MuiTypography-h2,
+.MuiTypography-h3,
+.MuiTypography-h4,
+.MuiTypography-h5,
+.MuiTypography-h6 {
+  font-family: 'Luckiest Guy', cursive !important;
 }
 
 
