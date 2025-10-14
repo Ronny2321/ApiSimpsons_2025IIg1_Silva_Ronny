@@ -60,14 +60,14 @@
 }
 
 .brand-title {
-    height: 46px;
+    height: 70px;
     width: auto;
     filter: drop-shadow(0 4px 0 rgba(0, 0, 0, .25));
 }
 
 .brand-family {
     display: none;
-    height: 120px;
+    height: auto;
     width: auto;
     filter: drop-shadow(0 6px 0 rgba(0, 0, 0, .25));
 }
@@ -92,7 +92,8 @@
 
 @media (min-width:992px) {
     .brand-family {
-        height: 200px;
+        padding: 20px;
+        height: 170px;
     }
 }
 
