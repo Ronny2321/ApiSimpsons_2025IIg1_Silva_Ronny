@@ -12,7 +12,7 @@ const Header = () => {
         alt="The Simpsons"
         className="brand-title"
       />
-
+      <h1 className="home-title">BIENVEN!DOH!</h1>
       {/* <nav className="quick-tabs" aria-label="Secciones rápidas">
         <NavLink to="/" className="qt-link">
           Inicio

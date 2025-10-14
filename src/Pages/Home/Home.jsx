@@ -12,7 +12,6 @@ const Home = () => {
           alt="Los Simpson Logo"
           className="home-logo"
         />
-        <h1 className="home-title">API</h1>
         <p className="home-subtitle">
           ¡Explora el universo de Springfield! Conoce a tus personajes
           favoritos, sus lugares y cada episodio de esta icónica serie.
