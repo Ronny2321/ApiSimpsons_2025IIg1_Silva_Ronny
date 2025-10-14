@@ -87,6 +87,7 @@
   height: 220px;
   object-fit: cover;
   display: block;
+  animation: location-zoom 4s ease-in-out infinite;
 }
 
 .image-fallback {
@@ -197,6 +198,15 @@
 .modal-description {
   font-size: 1rem;
   color: #333;
+}
+
+@keyframes location-zoom {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
 }
 
 @media (max-width: 560px) {
