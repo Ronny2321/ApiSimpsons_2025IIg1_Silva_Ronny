@@ -6,6 +6,7 @@ import CharactersPage from "./Pages/Characters/CharactersPage";
 import LocationsPage from "./Pages/Locations/LocationsPage";
 import EpisodesPage from "./Pages/Episodes/EpisodesPage";
 import Home from "./Pages/Home/Home";
+import CloudReveal from "./Components/Animation/CloudReveal";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -15,6 +16,7 @@ function App() {
   return (
     <Router>
       <div className="app-shell">
+        <CloudReveal />
         <Header onMenuClick={() => setNavOpen(true)} />
 
         <div
