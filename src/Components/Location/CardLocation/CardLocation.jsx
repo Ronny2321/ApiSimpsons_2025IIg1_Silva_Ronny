@@ -10,9 +10,7 @@ const CardLocation = ({ location }) => {
     ? `https://cdn.thesimpsonsapi.com/500${location.image_path}`
     : null;
 
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   return (
     <>
@@ -32,6 +30,7 @@ const CardLocation = ({ location }) => {
         <div className="loc-ribbon" aria-hidden>
           <span>Ciudad</span>
         </div>
+
         <div
           className="loc-badge"
           title={`Ciudad: ${town}`}
@@ -59,6 +58,20 @@ const CardLocation = ({ location }) => {
           ) : (
             <div className="image-fallback">Sin imagen</div>
           )}
+
+          <div className="loc-overlay-btn">
+            <button
+              className="loc-overlay-cta"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleModal();
+              }}
+              aria-label={`Ver detalles de ${location?.name || "lugar"}`}
+            >
+              Ver descripción
+            </button>
+          </div>
+
           <figcaption className="visually-hidden">{location?.name}</figcaption>
         </figure>
 
@@ -75,7 +88,7 @@ const CardLocation = ({ location }) => {
       <LocationModal
         isOpen={isModalOpen}
         onClose={toggleModal}
-        locationId={location.id} 
+        locationId={location.id}
         image={imgSrc}
         description={location?.description}
       />

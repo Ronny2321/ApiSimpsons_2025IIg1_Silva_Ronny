@@ -127,6 +127,77 @@
   align-items: center;
 }
 
+.location-card:hover .location-image {
+  animation-play-state: paused;
+  transform: scale(1.05);
+  transition: transform .25s ease;
+}
+
+.loc-overlay-btn {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+
+.location-card:hover .loc-overlay-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.loc-overlay-cta {
+  border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
+  border-radius: 999px;
+  background: var(--simpson-yellow, #FFD90F);
+  color: #000;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 1.15rem;
+  padding: 10px 22px;
+  box-shadow: var(--ink-shadow, 0 6px 0 rgba(0, 0, 0, .35));
+  filter: url(#cartoon-outline);
+  cursor: pointer;
+  transform: scale(0.9);
+  animation: ctaPop .25s ease-out both;
+  transition: transform .15s ease, background .15s ease, color .15s ease;
+}
+
+@keyframes ctaPop {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.9);
+  }
+}
+
+.loc-overlay-cta:hover {
+  transform: scale(1.05) translateY(-2px);
+  background: var(--simpson-blue, #00A2E8);
+  color: #fff;
+}
+
+.loc-overlay-cta:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px #fff,
+    0 0 0 6px var(--simpson-blue, #00A2E8),
+    var(--ink-shadow, 0 6px 0 rgba(0, 0, 0, .35));
+}
+
+
 .chip {
   background: #fff;
   border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
@@ -201,9 +272,12 @@
 }
 
 @keyframes location-zoom {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.1);
   }
