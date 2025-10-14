@@ -96,6 +96,14 @@
     }
 }
 
+@media (max-width: 767px) {
+    .brand-family {
+        display: block;
+        height: 64px;
+        width: auto;
+    }
+}
+
 
 .quick-tabs {
     flex-grow: 1;
