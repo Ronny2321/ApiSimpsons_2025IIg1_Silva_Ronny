@@ -28,14 +28,24 @@
 }
 
 .character-grid {
-    display: grid;
-    gap: 20px;
-    width: 100%;
-    max-width: 1200px;
-    margin-bottom: 20px;
-    padding: 5px 10px -20px;
-    background: #ffffff;
-    border-radius: var(--simpson-card-radius);
+        display: grid;
+        grid-template-columns: 1fr; /* mobile-first */
+        gap: 16px;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto 20px;
+        padding: 10px;
+        background: #ffffff;
+        border-radius: var(--simpson-card-radius);
+        box-shadow: 0 10px 0 rgba(0,0,0,.35);
+}
+
+@media (min-width: 480px) {
+    .character-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+
+@media (min-width: 1200px) {
+    .character-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
 }
 
 .pagination-controls {
