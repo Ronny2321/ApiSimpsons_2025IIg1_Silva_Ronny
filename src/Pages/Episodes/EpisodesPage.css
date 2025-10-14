@@ -2,7 +2,7 @@
     background: linear-gradient(180deg, #fffde7, #ffeb3b 90%);
     border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
     border-radius: 20px;
-    padding: 30px;
+    padding: 16px;
 }
 
 
@@ -30,16 +30,18 @@
 
 .filter-container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     gap: 12px;
-    margin-bottom: 30px;
+    margin: 10px auto 20px;
     background: linear-gradient(180deg, #fff59d 0%, #fbc02d 100%);
     padding: 10px 16px;
     border: var(--simpson-stroke) solid var(--simpson-outline);
     border-radius: 999px;
     box-shadow: var(--ink-shadow);
     font-family: "Righteous", sans-serif;
+    width: 100%;
+    max-width: 900px;
 }
 
 .filter-container label {
@@ -51,13 +53,13 @@
 
 .filter-container select {
     appearance: none;
-    padding: 10px 16px;
+    padding: 8px 12px;
     border: var(--simpson-stroke) solid var(--simpson-outline);
     border-radius: 999px;
     background: #fff;
     color: var(--simpson-outline);
     font-family: "Righteous", sans-serif;
-    font-size: 1rem;
+    font-size: .95rem;
     font-weight: 600;
     box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
     cursor: pointer;
@@ -82,15 +84,54 @@
 
 #season-select {
     background-color: #fbc02d;
-    max-height: 100px;
-    overflow-y: auto;
 }
 
 .episodes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 24px;
-    padding: 10px;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 8px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 0 rgba(0, 0, 0, 0.35);
+}
+
+@media (min-width: 480px) {
+    .episodes-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (min-width: 992px) {
+    .episodes-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-container {
+        flex-direction: column;
+        align-items: stretch;
+        border-radius: 16px;
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .filter-container label {
+        width: 100%;
+        text-align: left;
+        font-size: 1rem;
+        margin-bottom: 4px;
+    }
+
+    .filter-container select {
+        width: 100%;
+    }
 }
 
 .pagination-controls {
@@ -136,15 +177,15 @@
 
 .loading-message,
 .error-message {
-  text-align: center;
-  font-family: 'Righteous', sans-serif;
-  font-size: 1.2rem;
-  color:#ce1610;
-  background: var(--simpson-cream, #FFFDE7);
-  padding: 20px;
-  border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
-  border-radius: 12px;
-  box-shadow: var(--ink-shadow, 0 6px 0 rgba(0, 0, 0, .35));
-  margin: 20px auto;
-  max-width: 600px;
+    text-align: center;
+    font-family: 'Righteous', sans-serif;
+    font-size: 1.2rem;
+    color: #ce1610;
+    background: var(--simpson-cream, #FFFDE7);
+    padding: 20px;
+    border: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
+    border-radius: 12px;
+    box-shadow: var(--ink-shadow, 0 6px 0 rgba(0, 0, 0, .35));
+    margin: 20px auto;
+    max-width: 600px;
 }

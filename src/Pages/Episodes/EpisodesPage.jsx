@@ -12,7 +12,7 @@ const EpisodesPage = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState("");
-  const itemsPerPage = 8;
+  const itemsPerPage = 9;
 
   useEffect(() => {
     const fetchAllEpisodes = async () => {
@@ -89,9 +89,9 @@ const EpisodesPage = () => {
   if (error) return <div className="error-message">{error}</div>;
 
   return (
-    <div className="episodes-container">
+    <div className="">
       <div className="filter-container">
-        <label htmlFor="season-select">Filtrar por temporada:</label>
+        <label htmlFor="season-select">Temporada:</label>
         <select
           id="season-select"
           value={selectedSeason}

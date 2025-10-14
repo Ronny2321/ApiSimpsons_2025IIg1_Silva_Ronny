@@ -24,7 +24,7 @@
   background: linear-gradient(135deg, #fff59d, #fbc02d);
   display: grid;
   place-items: center;
-  min-height: 190px;
+  min-height: 120px;
 }
 
 .ep-code {
@@ -65,7 +65,8 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  height: 210px;
+  height: 130px;
+  /* mobile-first más compacto */
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -209,8 +210,8 @@
   background: var(--simpson-yellow, #FFD90F);
   color: #000;
   font-family: 'Luckiest Guy', cursive;
-  font-size: 1.3rem;
-  padding: 12px 24px;
+  font-size: .95rem;
+  padding: 8px 14px;
   box-shadow: var(--ink-shadow, 0 6px 0 rgba(0, 0, 0, .35));
   filter: url(#cartoon-outline);
   cursor: pointer;
@@ -230,11 +231,12 @@
 
 .ep-body {
   background: var(--simpson-cream, #FFFDE7);
+  padding: 10px 12px !important;
 }
 
 .episode-title {
   margin: 10px 0 6px;
-  font-size: 1.6rem;
+  font-size: 1.15rem;
   text-align: center;
   color: #000;
   text-shadow: 2px 2px var(--simpson-yellow, #FFD90F);
@@ -242,11 +244,16 @@
   line-height: 1.05;
   filter: url(#cartoon-outline);
   word-break: break-word;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .ep-meta {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
   margin: 6px 0 12px;
 }
@@ -319,6 +326,7 @@
   line-height: 1;
   white-space: nowrap;
   max-width: 100%;
+  font-size: .9rem;
 }
 
 .chip-label strong {
@@ -326,18 +334,44 @@
   margin-right: 2px;
 }
 
+@media (min-width: 560px) {
+  .ep-top {
+    min-height: 150px;
+  }
 
-@media (max-width: 520px) {
-  .ep-meta {
-    grid-template-columns: 1fr 1fr;
+  .episode-image {
+    height: 160px;
   }
 
   .episode-title {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+  }
+
+  .ep-meta {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .video-overlay-btn button {
-    font-size: 1rem;
-    padding: 10px 20px;
+    font-size: 1.05rem;
+    padding: 10px 18px;
+  }
+}
+
+@media (min-width: 768px) {
+  .ep-top {
+    min-height: 170px;
+  }
+
+  .episode-image {
+    height: 180px;
+  }
+
+  .episode-title {
+    font-size: 1.5rem;
+  }
+
+  .video-overlay-btn button {
+    font-size: 1.15rem;
+    padding: 12px 22px;
   }
 }
