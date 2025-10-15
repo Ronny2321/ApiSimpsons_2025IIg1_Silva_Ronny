@@ -97,17 +97,18 @@ h6,
   display: grid;
   grid-template-columns: 1fr;
   gap: 0;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 10px 0 0 0;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
 
 .app-main {
-  background: #fff;
-  border: var(--simpson-stroke) solid var(--simpson-outline);
-  border-radius: 16px;
-  box-shadow: var(--ink-shadow);
-  padding: 16px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
   min-height: calc(100dvh - var(--header-h) - 40px);
 }
 
