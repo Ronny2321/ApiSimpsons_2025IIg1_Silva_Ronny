@@ -382,7 +382,7 @@
   margin: 6px auto 10px;
   width: fit-content;
   padding: 6px 12px;
-  background: #ffd90f;
+  background: #68b2ee;
   color: #000;
   font-weight: bold;
   font-family: 'Luckiest Guy', cursive;
@@ -391,6 +391,8 @@
   box-shadow: 0 4px 0 rgba(0, 0, 0, 0.35);
   filter: url(#cartoon-outline);
   text-transform: uppercase;
+  text-align: center;
+  word-break: break-word;
 }
 
 .character-status.red {
