@@ -21,7 +21,8 @@
 }
 
 .character-image {
-  position: relative; /* contexto para badges y overlay */
+  position: relative;
+  /* contexto para badges y overlay */
   margin: 0;
   border-bottom: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
   background: linear-gradient(135deg, #fff59d, #fbc02d);
@@ -35,7 +36,11 @@
 .character-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  /* mostrar imagen completa */
+  max-width: 88%;
+  /* alejar un poco la imagen */
+  max-height: 88%;
   display: block;
   animation: character-alive 2s ease-in-out infinite;
 }
@@ -94,7 +99,8 @@
 
 .char-overlay-btn {
   position: absolute;
-  inset: 0; /* cubre solo el contenedor de imagen */
+  inset: 0;
+  /* cubre solo el contenedor de imagen */
   z-index: 3;
   display: flex;
   align-items: center;
@@ -207,13 +213,25 @@
   box-shadow: var(--ink-shadow-lg);
 }
 
-/* duplicado de .character-image unificado arriba */
+.character-image {
+  position: relative;
+  margin: 0;
+  border-bottom: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
+  background: linear-gradient(135deg, #fff59d, #fbc02d);
+  min-height: 130px;
+  display: grid;
+  place-items: center;
+  height: 150px;
+  overflow: hidden;
+}
 
 .character-image img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* llenar contenedor sin deformar */
+  object-fit: contain;
+  max-width: 88%;
+  max-height: 88%;
   image-rendering: -webkit-optimize-contrast;
   filter: drop-shadow(6px 8px 0 rgba(0, 0, 0, 0.35));
   animation: character-alive 2s ease-in-out infinite;
@@ -384,7 +402,8 @@
 
 .character-age {
   position: absolute;
-  bottom: 6px; /* dentro del área de imagen */
+  bottom: 6px;
+  /* dentro del área de imagen */
   left: 6px;
   transform: rotate(-15deg);
   font-weight: bold;
