@@ -161,7 +161,7 @@ const CharactersPage = () => {
   if (errorMsg) return <div className="error-message">{errorMsg}</div>;
 
   return (
-    <div>
+    <div className="characters-page">
       <div className="character-grid">
         {characterData.map((character) => (
           <CardCharacter
