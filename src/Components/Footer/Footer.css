@@ -99,7 +99,7 @@
 
 @media (min-width: 680px) {
     .footer-inner {
-        grid-template-columns: auto 1fr;
+      grid-template-columns: auto 1fr auto;
         align-items: center;
         justify-items: stretch;
     }

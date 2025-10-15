@@ -3,6 +3,7 @@ import "./Footer.css";
 
 const Footer = () => {
   const authorImg = `${import.meta.env.BASE_URL}yo.png`;
+  const rightImg = `${import.meta.env.BASE_URL}lyr.png`;
 
   return (
     <footer
@@ -32,8 +33,9 @@ const Footer = () => {
         <div className="author-meta">
           <h3 className="author-title">Fuentes y autor</h3>
           <p className="author-note">
-            Proyecto académico inspirado en el universo de Los Simpson. Imagen
-            del autor en estilo cartoon.
+            Proyecto académico inspirado en el universo de Los Simpson y
+            dedicado a mi novia linda que me colaboro con las ideas creativas
+            del diseño.
           </p>
           <ul className="author-links">
             <li>
@@ -68,6 +70,27 @@ const Footer = () => {
             </li>
           </ul>
         </div>
+
+        <figure
+          className="author-figure"
+          aria-label="Imagen del autor (derecha)"
+        >
+          <img
+            src={rightImg}
+            alt="Autor (derecha) - estilo Los Simpson"
+            loading="lazy"
+            onError={(e) => {
+              e.currentTarget.replaceWith(
+                Object.assign(document.createElement("div"), {
+                  className: "author-fallback",
+                  innerText: "Tu foto aquí",
+                  role: "img",
+                  ariaLabel: "Foto del autor no disponible",
+                })
+              );
+            }}
+          />
+        </figure>
       </div>
     </footer>
   );
