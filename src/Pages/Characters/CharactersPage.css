@@ -64,6 +64,57 @@
     counter-reset: page var(--page-counter, 0);
 }
 
+.character-search {
+    width: 100%;
+    max-width: 900px;
+    margin: 12px auto 18px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 10px 12px;
+    background: linear-gradient(180deg, #fff59d 0%, #fbc02d 100%);
+    border: var(--simpson-stroke) solid var(--simpson-outline);
+    border-radius: 16px;
+    box-shadow: var(--ink-shadow);
+}
+
+.character-search label {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: clamp(1rem, 3.8vw, 1.1rem);
+    color: #000;
+    text-shadow: 2px 2px var(--simpson-yellow);
+}
+
+.character-search input[type="text"],
+.character-search input[type="search"] {
+    appearance: none;
+    width: 100%;
+    padding: 10px 12px;
+    border: var(--simpson-stroke) solid var(--simpson-outline);
+    border-radius: 999px;
+    background: #fff;
+    color: #000;
+    font-family: 'Righteous', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.character-search input::placeholder {
+    color: #666;
+}
+
+@media (min-width: 600px) {
+    .character-search {
+        grid-template-columns: auto 1fr;
+        align-items: center;
+    }
+
+    .character-search label {
+        margin-right: 10px;
+    }
+}
+
 @media (min-width: 480px) {
     .character-grid {
         grid-template-columns: repeat(2, 1fr);

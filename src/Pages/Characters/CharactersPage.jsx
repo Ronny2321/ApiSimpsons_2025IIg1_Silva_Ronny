@@ -38,6 +38,10 @@ const CharactersPage = () => {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const pageCacheRef = useRef(new Map());
+  const [searchTerm, setSearchTerm] = useState("");
+  const [allCharacters, setAllCharacters] = useState([]);
+  const [isFetchingAll, setIsFetchingAll] = useState(false);
+  const [filteredResults, setFilteredResults] = useState(null);
 
   const fetchJSON = async (url, { signal } = {}) => {
     const res = await fetch(url, {
@@ -127,6 +131,56 @@ const CharactersPage = () => {
     }
   }, []);
 
+  // Carga completa para búsqueda (una sola vez cuando se requiere)
+  const fetchAllCharacters = useCallback(async () => {
+    if (isFetchingAll || allCharacters.length > 0) return;
+    setIsFetchingAll(true);
+    try {
+      let all = [];
+      let nextPage = `${BASE_URL}/characters`;
+      while (nextPage) {
+        const data = await fetchJSON(nextPage);
+        const results = Array.isArray(data?.results)
+          ? data.results
+          : Array.isArray(data?.data)
+          ? data.data
+          : Array.isArray(data)
+          ? data
+          : [];
+        const normalized = results.map((c, idx) => normalizeCharacter(c, idx));
+        all = all.concat(normalized);
+        nextPage = data?.next || null;
+      }
+      setAllCharacters(all);
+    } catch (err) {
+      console.error("Error al cargar todos los personajes para búsqueda", err);
+    } finally {
+      setIsFetchingAll(false);
+    }
+  }, [allCharacters.length, isFetchingAll]);
+
+  useEffect(() => {
+    const q = searchTerm.trim().toLowerCase();
+    if (!q) {
+      setFilteredResults(null);
+      return;
+    }
+    if (allCharacters.length === 0 && !isFetchingAll) {
+      fetchAllCharacters();
+    }
+    const source = allCharacters.length > 0 ? allCharacters : characterData;
+    const filtered = source.filter((c) =>
+      (c.name || "").toLowerCase().includes(q)
+    );
+    setFilteredResults(filtered);
+  }, [
+    searchTerm,
+    allCharacters,
+    characterData,
+    fetchAllCharacters,
+    isFetchingAll,
+  ]);
+
   useEffect(() => {
     fetchCharacters(currentPage);
   }, [currentPage, fetchCharacters]);
@@ -162,8 +216,21 @@ const CharactersPage = () => {
 
   return (
     <div className="characters-page">
+      <div className="character-search" role="search">
+        <label htmlFor="character-search-input">Buscar personaje:</label>
+        <input
+          id="character-search-input"
+          type="text"
+          inputMode="search"
+          placeholder="Buscar por nombre..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          aria-label="Buscar personaje por nombre"
+        />
+      </div>
+
       <div className="character-grid">
-        {characterData.map((character) => (
+        {(filteredResults ?? characterData).map((character) => (
           <CardCharacter
             key={character.id}
             user={character}
@@ -171,17 +238,23 @@ const CharactersPage = () => {
           />
         ))}
       </div>
-      <div className="pagination-controls">
-        <button onClick={handlePrevPage} disabled={currentPage === 1}>
-          Anterior
-        </button>
-        <span>
-          Página {currentPage} de {totalPages}
-        </span>
-        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-          Siguiente
-        </button>
-      </div>
+      {/* Ocultar paginación cuando hay búsqueda activa */}
+      {!searchTerm && (
+        <div className="pagination-controls">
+          <button onClick={handlePrevPage} disabled={currentPage === 1}>
+            Anterior
+          </button>
+          <span>
+            Página {currentPage} de {totalPages}
+          </span>
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+          >
+            Siguiente
+          </button>
+        </div>
+      )}
 
       <PowerModal
         character={selectedCharacter}
