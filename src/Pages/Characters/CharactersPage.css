@@ -55,7 +55,7 @@
     max-width: 1200px;
     margin: 0 auto 20px;
     padding: 10px;
-    background: #ffffff;
+    background: #b4ecf3;
     border-radius: var(--simpson-card-radius);
     box-shadow: 0 10px 0 rgba(0, 0, 0, .35);
 }
