@@ -157,8 +157,8 @@ const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
 
           {status === "success" && characterDetails && (
             <section className="content-grid">
-              {Array.isArray(characterDetails.phrases) &&
-                characterDetails.phrases.length > 0 && (
+              {Array.isArray(characterDetails.phrases) ? (
+                characterDetails.phrases.length > 0 ? (
                   <article className="card-section">
                     <h3 className="section-title">Frases</h3>
                     <ul className="phrases-list">
@@ -175,7 +175,13 @@ const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
                       ))}
                     </ul>
                   </article>
-                )}
+                ) : (
+                  <article className="card-section">
+                    <h3 className="section-title">Frases</h3>
+                    <p className="phrases-empty">No hay frases registradas.</p>
+                  </article>
+                )
+              ) : null}
 
               {hasAppearances ? (
                 <section className="card-section">
