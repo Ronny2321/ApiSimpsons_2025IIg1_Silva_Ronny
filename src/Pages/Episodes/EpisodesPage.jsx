@@ -12,6 +12,7 @@ const EpisodesPage = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const itemsPerPage = 9;
 
   useEffect(() => {
@@ -53,18 +54,28 @@ const EpisodesPage = () => {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
+  useEffect(() => {
+    const norm = (v) => (v || "").toString().toLowerCase();
+    const term = norm(searchTerm).trim();
+
+    let filtered = episodes;
+    if (selectedSeason) {
+      filtered = filtered.filter(
+        (ep) => ep.season === parseInt(selectedSeason)
+      );
+    }
+    if (term) {
+      filtered = filtered.filter((ep) => norm(ep.name).includes(term));
+    }
+
+    setFilteredEpisodes(filtered);
+    setTotalPages(Math.ceil(filtered.length / itemsPerPage));
+    setCurrentPage(1);
+  }, [episodes, selectedSeason, searchTerm]);
+
   const handleSeasonChange = (event) => {
     const season = event.target.value;
     setSelectedSeason(season);
-    if (season === "") {
-      setFilteredEpisodes(episodes);
-      setTotalPages(Math.ceil(episodes.length / itemsPerPage));
-    } else {
-      const filtered = episodes.filter((ep) => ep.season === parseInt(season));
-      setFilteredEpisodes(filtered);
-      setTotalPages(Math.ceil(filtered.length / itemsPerPage));
-      setCurrentPage(1);
-    }
   };
 
   const handlePrevPage = () => {
@@ -90,8 +101,20 @@ const EpisodesPage = () => {
 
   return (
     <div className="episodes-page">
-      <div className="filter-container">
-        <label htmlFor="season-select">Temporada:</label>
+      <div
+        className="filter-container"
+        role="search"
+        aria-label="Filtrar episodios por nombre y temporada"
+      >
+        <label htmlFor="episode-search">Buscar episodio</label>
+        <input
+          id="episode-search"
+          type="search"
+          placeholder="Bart the Genius, etc."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <label htmlFor="season-select">Temporada</label>
         <select
           id="season-select"
           value={selectedSeason}
@@ -110,17 +133,24 @@ const EpisodesPage = () => {
           <CardEpisodes key={episode.id} episode={episode} />
         ))}
       </div>
-      <div className="pagination-controls">
-        <button onClick={handlePrevPage} disabled={currentPage === 1}>
-          Anterior
-        </button>
-        <span>
-          Página {currentPage} de {totalPages}
-        </span>
-        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-          Siguiente
-        </button>
-      </div>
+      {searchTerm.trim().length === 0 &&
+        filteredEpisodes.length > 0 &&
+        totalPages > 1 && (
+          <div className="pagination-controls">
+            <button onClick={handlePrevPage} disabled={currentPage === 1}>
+              Anterior
+            </button>
+            <span>
+              Página {currentPage} de {totalPages}
+            </span>
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+            >
+              Siguiente
+            </button>
+          </div>
+        )}
     </div>
   );
 };
