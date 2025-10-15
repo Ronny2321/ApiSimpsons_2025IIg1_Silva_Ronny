@@ -89,7 +89,7 @@ const EpisodesPage = () => {
   if (error) return <div className="error-message">{error}</div>;
 
   return (
-    <div className="">
+    <div className="episodes-page">
       <div className="filter-container">
         <label htmlFor="season-select">Temporada:</label>
         <select

@@ -62,7 +62,7 @@ const LocationsPage = () => {
   if (error) return <div className="error-message">{error}</div>;
 
   return (
-    <div>
+    <div className="locations-page">
       <div className="locations-container">
         {currentItems.map((location) => (
           <CardLocation key={location.id} location={location} />
