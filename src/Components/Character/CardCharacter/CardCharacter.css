@@ -428,7 +428,6 @@
 .character-age {
   position: absolute;
   bottom: 6px;
-  /* dentro del área de imagen */
   left: 6px;
   transform: rotate(-15deg);
   font-weight: bold;
