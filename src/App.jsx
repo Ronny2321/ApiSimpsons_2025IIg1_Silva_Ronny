@@ -26,7 +26,7 @@ function App() {
     <Router basename={import.meta.env.BASE_URL}>
       <div className="app-shell">
         <CloudReveal />
-        {/* <CloudOnRouteChange /> */}
+        { <CloudOnRouteChange /> }
         <Header onMenuClick={() => setNavOpen(true)} />
         <div id="container-body">
           <main className="app-main" role="main">
