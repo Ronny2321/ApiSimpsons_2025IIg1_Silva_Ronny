@@ -391,7 +391,7 @@
 
 .character-age {
   position: absolute;
-  bottom: 140px;
+  bottom: 150px;
   left: 5px;
   transform: rotate(-15deg);
   font-weight: bold;
