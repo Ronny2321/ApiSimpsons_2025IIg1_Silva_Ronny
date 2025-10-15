@@ -103,13 +103,10 @@ const CardCharacter = ({ user }) => {
           </div>
 
           <div
-            className="chip chip-birth"
-            title={user.birthdate || "Desconocida"}
+            className="character-birth"
+            title={user.occupation || "Desconocida"}
           >
-            <span className="chip-label">Nacimiento:</span>
-            <span className="chip-value">
-              {user.birthdate || "Desconocida"}
-            </span>
+            {user.occupation || "Desconocida"}
           </div>
         </CardContent>
 
