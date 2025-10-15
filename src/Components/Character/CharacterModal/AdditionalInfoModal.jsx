@@ -71,6 +71,10 @@ const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
       ? `https://cdn.thesimpsonsapi.com/500${characterDetails.portrait_path}`
       : "");
   const descriptionText = (characterDetails?.description || "").trim();
+  const hasAppearances = Boolean(
+    characterDetails?.first_appearance_ep ||
+      characterDetails?.first_appearance_sh
+  );
 
   return (
     <div className="modal-overlay">
@@ -173,8 +177,7 @@ const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
                   </article>
                 )}
 
-              {(characterDetails.first_appearance_ep ||
-                characterDetails.first_appearance_sh) && (
+              {hasAppearances ? (
                 <section className="card-section">
                   <h3 className="section-title">Primeras apariciones</h3>
 
@@ -237,6 +240,13 @@ const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
                       </article>
                     )}
                   </div>
+                </section>
+              ) : (
+                <section className="card-section">
+                  <h3 className="section-title">Primeras apariciones</h3>
+                  <p className="appear-empty">
+                    No hay apariciones registradas.
+                  </p>
                 </section>
               )}
             </section>

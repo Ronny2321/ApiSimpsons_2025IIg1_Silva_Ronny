@@ -371,6 +371,17 @@
   font-size: clamp(.9rem, 2.6vw, 1rem);
 }
 
+.appear-empty {
+  margin: 6px 0 0;
+  padding: 10px 12px;
+  background: #fffde7;
+  border: 2px solid #000;
+  border-radius: 12px;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, .2);
+  font-family: 'Righteous', sans-serif;
+  color: #333;
+}
+
 .appear-badge {
   position: absolute;
   top: 8px;
