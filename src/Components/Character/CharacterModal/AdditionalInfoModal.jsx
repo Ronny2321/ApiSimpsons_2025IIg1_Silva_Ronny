@@ -106,6 +106,9 @@ const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
             <p className="character-occupation">
               {characterDetails?.birthdate || "0000-00-00"}
             </p>
+            <p className="character-occupation">
+              {characterDetails?.description || "Sin descripción"}
+            </p>
           </div>
         </header>
 
