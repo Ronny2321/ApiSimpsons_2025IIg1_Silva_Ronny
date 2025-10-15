@@ -131,7 +131,6 @@ const CharactersPage = () => {
     }
   }, []);
 
-  // Carga completa para búsqueda (una sola vez cuando se requiere)
   const fetchAllCharacters = useCallback(async () => {
     if (isFetchingAll || allCharacters.length > 0) return;
     setIsFetchingAll(true);
@@ -222,7 +221,7 @@ const CharactersPage = () => {
           id="character-search-input"
           type="text"
           inputMode="search"
-          placeholder="Buscar por nombre..."
+          placeholder="Homero, Bart, Lisa, etc."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           aria-label="Buscar personaje por nombre"
