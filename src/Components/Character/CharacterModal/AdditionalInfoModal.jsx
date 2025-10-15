@@ -104,7 +104,7 @@ const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
 
             <h2 className="title">{characterDetails?.name || "Personaje"}</h2>
             <p className="character-occupation">
-              {characterDetails?.occupation || "No especificada"}
+              {characterDetails?.birthdate || "0000-00-00"}
             </p>
           </div>
         </header>
@@ -218,8 +218,6 @@ const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
             </section>
           )}
         </main>
-
-        
       </dialog>
     </div>
   );
