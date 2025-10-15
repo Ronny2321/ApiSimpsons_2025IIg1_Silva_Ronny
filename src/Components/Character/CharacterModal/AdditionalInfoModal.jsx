@@ -5,6 +5,7 @@ const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
   const [characterDetails, setCharacterDetails] = useState(null);
   const [status, setStatus] = useState("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [descExpanded, setDescExpanded] = useState(false);
   const dialogRef = useRef(null);
   const abortRef = useRef(null);
 
@@ -32,6 +33,7 @@ const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
       setCharacterDetails(null);
       setStatus("idle");
       setErrorMsg("");
+      setDescExpanded(false);
       abortRef.current?.abort?.();
       return;
     }
@@ -68,6 +70,7 @@ const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
     (characterDetails?.portrait_path
       ? `https://cdn.thesimpsonsapi.com/500${characterDetails.portrait_path}`
       : "");
+  const descriptionText = (characterDetails?.description || "").trim();
 
   return (
     <div className="modal-overlay">
@@ -106,9 +109,27 @@ const AdditionalInfoModal = ({ characterId, isOpen, onClose }) => {
             <p className="character-occupation">
               {characterDetails?.birthdate || "0000-00-00"}
             </p>
-            <p className="character-occupation">
-              {characterDetails?.description || "Sin descripción"}
-            </p>
+            <div className="desc-wrapper">
+              <p
+                className={`character-occupation ${
+                  descriptionText && !descExpanded
+                    ? "truncate-ellipsis"
+                    : "expanded"
+                }`}
+              >
+                {descriptionText || "Sin descripción"}
+              </p>
+              {descriptionText && descriptionText.length > 120 && (
+                <button
+                  type="button"
+                  className="toggle-desc-btn"
+                  aria-expanded={descExpanded}
+                  onClick={() => setDescExpanded((v) => !v)}
+                >
+                  {descExpanded ? "Ver menos" : "Ver más…"}
+                </button>
+              )}
+            </div>
           </div>
         </header>
 
