@@ -13,6 +13,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import CloudRevealLite from "./Components/Animation/CloudRevealLite";
+import Footer from "./Components/Footer/Footer";
 
 const CloudOnRouteChange = () => {
   const location = useLocation();
@@ -26,7 +27,7 @@ function App() {
     <Router basename={import.meta.env.BASE_URL}>
       <div className="app-shell">
         <CloudReveal />
-        { <CloudOnRouteChange /> }
+        {<CloudOnRouteChange />}
         <Header onMenuClick={() => setNavOpen(true)} />
         <div id="container-body">
           <main className="app-main" role="main">
@@ -37,6 +38,7 @@ function App() {
               <Route path="/episodes" element={<EpisodesPage />} />
             </Routes>
           </main>
+          <Footer />
         </div>
       </div>
     </Router>
