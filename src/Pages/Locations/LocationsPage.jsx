@@ -82,7 +82,7 @@ const LocationsPage = () => {
         aria-label="Buscar ubicaciones por nombre o ciudad"
         onSubmit={(e) => e.preventDefault()}
       >
-        <label htmlFor="locationSearch">Buscar por ciudad</label>
+        <label htmlFor="locationSearch">Buscar por nombre o ciudad</label>
         <input
           id="locationSearch"
           type="search"
