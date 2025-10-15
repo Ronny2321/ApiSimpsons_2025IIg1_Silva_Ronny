@@ -17,11 +17,13 @@ const Header = () => {
         <img src={CloudRight} alt="" className="cloud-header cloud4" />
       </div>
       <div className="header-inner">
-        <img
-          src={ImageTitleTheSimpsons}
-          alt="The Simpsons"
-          className="brand-title"
-        />
+        <NavLink to="/" aria-label="Ir al inicio" className="brand-link">
+          <img
+            src={ImageTitleTheSimpsons}
+            alt="The Simpsons"
+            className="brand-title"
+          />
+        </NavLink>
         <NavBar />
         <img src={Simpfamily} alt="Familia Simpson" className="brand-family" />
       </div>
