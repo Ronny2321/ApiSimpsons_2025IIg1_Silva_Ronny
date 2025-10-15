@@ -4,8 +4,8 @@ import "./CardLocation.css";
 
 const CardLocation = ({ location }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const town = location?.town || "—";
-  const useLabel = location?.use || "—";
+  const town = location?.town || "Desconocida";
+  const useLabel = location?.use || "Desconocida";
   const imgSrc = location?.image_path
     ? `https://cdn.thesimpsonsapi.com/500${location.image_path}`
     : null;
