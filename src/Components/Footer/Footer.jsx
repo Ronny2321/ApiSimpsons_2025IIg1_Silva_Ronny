@@ -34,8 +34,8 @@ const Footer = () => {
           <h3 className="author-title">Fuentes y autor</h3>
           <p className="author-note">
             Proyecto académico inspirado en el universo de Los Simpson y
-            dedicado a mi novia linda que me colaboro con las ideas creativas
-            del diseño.
+            dedicado a mi novia linda que me ayudó en las ideas creativas del
+            diseño y la motivación.
           </p>
           <ul className="author-links">
             <li>
