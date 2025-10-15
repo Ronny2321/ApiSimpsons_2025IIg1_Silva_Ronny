@@ -100,7 +100,6 @@
 
 .filter-container input[type="search"]:hover,
 .filter-container select:hover {
-    background: var(--simpson-blue);
     color: #0f0d0d;
     transform: translateY(-2px);
 }
