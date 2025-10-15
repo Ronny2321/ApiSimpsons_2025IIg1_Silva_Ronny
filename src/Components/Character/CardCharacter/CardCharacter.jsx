@@ -64,6 +64,24 @@ const CardCharacter = ({ user }) => {
               Ver más...
             </button>
           </div>
+
+          <div
+            className={`character-age ${
+              user.age && user.age > 0 && user.age <= 10
+                ? "red"
+                : user.age > 10 && user.age <= 18
+                ? "green"
+                : user.age > 18 && user.age <= 28
+                ? "orange"
+                : user.age > 28 && user.age <= 50
+                ? "blue"
+                : user.age > 50
+                ? "purple"
+                : ""
+            }`}
+          >
+            <span>{user.age && user.age > 0 ? user.age : "?"}</span>
+          </div>
         </div>
 
         <CardContent className="character-content">
@@ -105,24 +123,6 @@ const CardCharacter = ({ user }) => {
           }`}
         >
           <span>{user.gender || "No especificado"}</span>
-        </div>
-
-        <div
-          className={`character-age ${
-            user.age && user.age > 0 && user.age <= 10
-              ? "red"
-              : user.age > 10 && user.age <= 18
-              ? "green"
-              : user.age > 18 && user.age <= 28
-              ? "orange"
-              : user.age > 28 && user.age <= 50
-              ? "blue"
-              : user.age > 50
-              ? "purple"
-              : ""
-          }`}
-        >
-          <span>{user.age && user.age > 0 ? user.age : "?"}</span>
         </div>
       </Card>
 

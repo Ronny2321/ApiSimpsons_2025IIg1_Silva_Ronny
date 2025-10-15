@@ -21,6 +21,7 @@
 }
 
 .character-image {
+  position: relative; /* contexto para badges y overlay */
   margin: 0;
   border-bottom: var(--simpson-stroke, 3px) solid var(--simpson-outline, #151515);
   background: linear-gradient(135deg, #fff59d, #fbc02d);
@@ -28,6 +29,7 @@
   display: grid;
   place-items: center;
   height: 150px;
+  overflow: hidden;
 }
 
 .character-image img {
@@ -92,7 +94,7 @@
 
 .char-overlay-btn {
   position: absolute;
-  inset: 0;
+  inset: 0; /* cubre solo el contenedor de imagen */
   z-index: 3;
   display: flex;
   align-items: center;
@@ -205,22 +207,13 @@
   box-shadow: var(--ink-shadow-lg);
 }
 
-.character-image {
-  width: 100%;
-  height: 150px;
-  background: linear-gradient(135deg, #fff59d, #fbc02d);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: var(--simpson-stroke) solid var(--simpson-outline);
-  overflow: hidden;
-}
+/* duplicado de .character-image unificado arriba */
 
 .character-image img {
   display: block;
+  width: 100%;
   height: 100%;
-  width: auto;
-  object-fit: contain;
+  object-fit: cover; /* llenar contenedor sin deformar */
   image-rendering: -webkit-optimize-contrast;
   filter: drop-shadow(6px 8px 0 rgba(0, 0, 0, 0.35));
   animation: character-alive 2s ease-in-out infinite;
@@ -391,8 +384,8 @@
 
 .character-age {
   position: absolute;
-  bottom: 150px;
-  left: 5px;
+  bottom: 6px; /* dentro del área de imagen */
+  left: 6px;
   transform: rotate(-15deg);
   font-weight: bold;
   font-family: 'Luckiest Guy', cursive;
@@ -402,6 +395,7 @@
   box-shadow: 0 4px 0 rgba(0, 0, 0, 0.35);
   filter: url(#cartoon-outline);
   text-transform: uppercase;
+  z-index: 4;
 }
 
 .character-age.red {
